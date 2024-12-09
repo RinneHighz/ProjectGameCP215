@@ -443,9 +443,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\rueng\\OneDrive - Srinakharinwirot University\\University\\Year4\\CP215\\Games\\ProjectGameCP215\\Game14.csproj",
-      "projectName": "Game14",
-      "projectPath": "C:\\Users\\rueng\\OneDrive - Srinakharinwirot University\\University\\Year4\\CP215\\Games\\ProjectGameCP215\\Game14.csproj",
+      "projectUniqueName": "C:\\Users\\rueng\\OneDrive - Srinakharinwirot University\\University\\Year4\\CP215\\Games\\ProjectGameCP215\\ProjectGameCP215.csproj",
+      "projectName": "ProjectGameCP215",
+      "projectPath": "C:\\Users\\rueng\\OneDrive - Srinakharinwirot University\\University\\Year4\\CP215\\Games\\ProjectGameCP215\\ProjectGameCP215.csproj",
       "packagesPath": "C:\\Users\\rueng\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\rueng\\OneDrive - Srinakharinwirot University\\University\\Year4\\CP215\\Games\\ProjectGameCP215\\obj\\",
       "projectStyle": "PackageReference",

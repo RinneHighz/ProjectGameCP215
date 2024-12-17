@@ -9,18 +9,12 @@ namespace ProjectGameCP215
     {
         AnimationStates states;
         Vector2 V;
-        MouseBullet mouseBullet;
-
-        public int hp;
-        public int maxHp;
-
-
-
-
+        public int score { get; set; } = 0; // เพิ่มตัวแปรเก็บคะแนน
+        public float maxHp { get; set; } = 100; // เลือดสูงสุด
+        public float hp { get; set; }    // เลือดปัจจุบัน
 
         public MaleActor(Vector2 position)
         {
-            maxHp = 100;
             hp = maxHp;
             var size = new Vector2(32, 48);
             Position = position;
@@ -30,11 +24,13 @@ namespace ProjectGameCP215
             var texture = TextureCache.Get("Content/Resource/SpriteSheet/MaleActor.png");
             var regions2d = RegionCutter.Cut(texture, size);
             var selector = new RegionSelector(regions2d);
+
             var stay = new Animation(this, 1.0f, selector.Select1by1(0, 0));
             var left = new Animation(this, 1.0f, selector.Select(start: 4, count: 4));
             var right = new Animation(this, 1.0f, selector.Select(start: 8, count: 4));
             var up = new Animation(this, 1.0f, selector.Select(start: 12, count: 4));
             var down = new Animation(this, 1.0f, selector.Select(start: 0, count: 4));
+
             states = new AnimationStates([stay, left, right, up, down]);
             AddAction(states);
 
@@ -44,12 +40,15 @@ namespace ProjectGameCP215
             Add(collisionObj);
 
 
-
-            Add(mouseBullet = new MouseBullet(Origin));
+            // เพิ่ม MouseBullet และส่ง this ไปยัง MouseBullet
+            var mouseBullet = new MouseBullet(Origin, this);
+            Add(mouseBullet);
         }
 
         public override void Act(float deltaTime)
         {
+            base.Act(deltaTime);
+
             var keyInfo = GlobalKeyboardInfo.Value;
             Vector2 direction = Vector2.Zero;
 
@@ -63,8 +62,7 @@ namespace ProjectGameCP215
             direction += DirectionKey.Direction;
 
             // ปรับความเร็ว
-            V.X = direction.X * 500 / 2;
-            V.Y = direction.Y * 500 / 2;
+            V = direction * 500 / 2;
 
             // ตั้งค่าการแสดงอนิเมชัน
             if (direction.X > 0)
@@ -81,7 +79,6 @@ namespace ProjectGameCP215
             // อัปเดตตำแหน่ง
             Position += V * deltaTime;
 
-            base.Act(deltaTime);
         }
 
         public void OnCollide(CollisionObj objB, CollideData data)
@@ -104,13 +101,13 @@ namespace ProjectGameCP215
             var slime = objB.Actor as Slime;
             slime?.Detach();
 
-            if(hp - 10 <= 0)
+            if (hp - 10 <= 0)
             {
                 hp = 0;
             }
             else
             {
-            hp -= 10;
+                hp -= 10;
             }
         }
 

@@ -7,12 +7,12 @@ namespace ProjectGameCP215
     public class MouseBullet : Actor
     {
         Vector2 startPosition;
-        public MouseBullet(Vector2 startPosition)
+        MaleActor player; // Reference ไปยัง MaleActor
+        public MouseBullet(Vector2 startPosition, MaleActor player)
         {
+            this.player = player; // รับ MaleActor เป็นพารามิเตอร์
             this.RawSize = startPosition;
-            // this.startPosition = startPosition;
-
-            // startPosition = screenSize -screenSize;
+            
             Add(new CrossHair(startPosition));
             var collisionObj = CollisionObj.CreateWithRect(this, 1);
             collisionObj.OnCollide = OnCollide;
@@ -35,13 +35,13 @@ namespace ProjectGameCP215
             if (time < 0)
                 time += deltaTime;
 
-            if(mouseInfo.IsLeftButtonDown() && time >= 0)
+             if (mouseInfo.IsLeftButtonDown() && time >= 0)
             {
                 var world = mouseInfo.WorldPosition;
                 var click = GlobalTransform.GetInverse().Transform(world);
 
                 var v = (click - startPosition).UnitVector() * 800;
-                var ball = new Ball(v) { Position = startPosition };
+                var ball = new Ball(v, player) { Position = startPosition }; // ส่ง player ไปยัง Ball
                 Add(ball);
 
                 time = -1.0f; // cooldown

@@ -8,12 +8,19 @@ namespace ProjectGameCP215
     public class GameOverState : Actor
     {
         ExitNotifier exitNotifier;
+        Text gameOverText;
         public GameOverState(Vector2 screenSize, ExitNotifier exitNotifier)
         {
             // Origin = screenSize / 2;
             // Scale = new Vector2(1, 1);
             Position = new Vector2(0, 0);
             this.exitNotifier = exitNotifier;
+
+            gameOverText = new Text("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50, Color.Brown, "Game Over")
+            {
+                Position = screenSize / 2 
+            };  
+
 
             var button1 = new Button("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50,
                 Color.Brown, "Menu", new Vector2(300, 100));
@@ -22,6 +29,7 @@ namespace ProjectGameCP215
 
 
             Add(button1);
+            Add(gameOverText);
         }
 
         private void Button1_ButtonClicked(GenericButton button)

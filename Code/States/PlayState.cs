@@ -14,6 +14,7 @@ namespace ProjectGameCP215
         Actor enermy = new Actor();
         MaleActor maleActor;
         ProgressBar hpBar;
+        Label scoreLabel;
 
         public PlayState(CameraMan cameraMan, Vector2 screenSize, ExitNotifier exitNotifier, Actor all)
         {
@@ -23,9 +24,16 @@ namespace ProjectGameCP215
             maleActor = new MaleActor(screenSize / 2);
             maleActor.Add(cameraMan);
             
-            hpBar = new ProgressBar(new Vector2(200, 20), max: maleActor.maxHp, Color.Black, Color.Green);
-            hpBar.Position = new Vector2(50, 50);
-            hpBar.Value = maleActor.hp;
+             hpBar = new ProgressBar(new Vector2(200, 20), max: maleActor.maxHp, Color.Black, Color.Green)
+            {
+                Position = new Vector2(50, 50),
+                Value = maleActor.hp
+            };
+
+            scoreLabel = new Label("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50, Color.Brown, "Score: 0")
+            {
+                Position = new Vector2(50, 100)
+            };  
 
             Actor visual = new Actor();
 
@@ -35,21 +43,11 @@ namespace ProjectGameCP215
             }
 
             visual.Add(hpBar);
+            visual.Add(scoreLabel);
             visual.Add(maleActor);
             visual.Add(enermy);
 
             Add(visual);
-        }
-
-
-
-        private Actor CreateTree()
-        {
-            var treeRegion = new TextureRegion(TextureCache.Get("Content/Resource/TileMap/TileSet.png"),
-                                                new RectF(0, 32 * 15, 32, 32 * 3));
-            var tree = new SpriteActor(treeRegion);
-            tree.Origin = new Vector2(32 / 2, tree.RawSize.Y - 32 / 2);
-            return tree;
         }
 
         public override void Act(float deltaTime)
@@ -65,10 +63,12 @@ namespace ProjectGameCP215
             for (int i = 0; i < enermy.ChildCount; i++)
             {
                 var slime = enermy.GetChild(i) as Slime;
-                slime.AddAction(new RandomMover(slime, maleActor.Position));
+                slime.AddAction(new RandomMover(slime, maleActor));
             }
 
             hpBar.Value = maleActor.hp;
+            scoreLabel.Text = "Score: " + maleActor.score;
+
 
             if(hpBar.Value <= 0){
                 exitNotifier.Invoke(this, 1);

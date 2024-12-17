@@ -5,10 +5,10 @@ using ThanaNita.MonoGameTnt;
 
 namespace ProjectGameCP215
 {
-    public class MainMenuState : Actor
+    public class GameOverState : Actor
     {
         ExitNotifier exitNotifier;
-        public MainMenuState(Vector2 screenSize, ExitNotifier exitNotifier)
+        public GameOverState(Vector2 screenSize, ExitNotifier exitNotifier)
         {
             // Origin = screenSize / 2;
             // Scale = new Vector2(1, 1);
@@ -16,7 +16,7 @@ namespace ProjectGameCP215
             this.exitNotifier = exitNotifier;
 
             var button1 = new Button("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50,
-                Color.Brown, "Button 1", new Vector2(300, 100));
+                Color.Brown, "Menu", new Vector2(300, 100));
             button1.Position = new Vector2(50, 500);
             button1.ButtonClicked += Button1_ButtonClicked;
 

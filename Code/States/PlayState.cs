@@ -2,6 +2,7 @@ using Microsoft.Xna.Framework;
 using MonoGame.Extended;
 using MonoGame.Extended.Screens;
 using ThanaNita.MonoGameTnt;
+using Microsoft.Xna.Framework.Input;
 
 namespace ProjectGameCP215
 {
@@ -9,38 +10,33 @@ namespace ProjectGameCP215
     {
 
         ExitNotifier exitNotifier;
+        Actor all;
+        Actor enermy = new Actor();
+        MaleActor maleActor;
+        ProgressBar hpBar;
 
-        public PlayState(CameraMan cameraMan, Vector2 screenSize, ExitNotifier exitNotifier)
+        public PlayState(CameraMan cameraMan, Vector2 screenSize, ExitNotifier exitNotifier, Actor all)
         {
             this.exitNotifier = exitNotifier;
+            this.all = all;
 
+            maleActor = new MaleActor(screenSize / 2);
+            maleActor.Add(cameraMan);
+            
+            hpBar = new ProgressBar(new Vector2(200, 20), max: maleActor.maxHp, Color.Black, Color.Green);
+            hpBar.Position = new Vector2(50, 50);
+            hpBar.Value = maleActor.hp;
 
-            var builder = new TileMapBuilder();
-            // 1. tileMap1
-            var tileMap1 = builder.CreateSimple("Content/Resource/TileMap/TileSet.png", new Vector2(32, 32), 14, 25,
-                                                "Content/Resource/TileMap/TileMap1.csv");
+            Actor visual = new Actor();
 
-            // 2. tree
-            var tree = CreateTree();
-            tree.Position = tileMap1.TileCenter(13, 11);
+            for (int i = 0; i < 50; i++)
+            {
+                enermy.Add(new Slime(RandomUtil.Position(screenSize)));
+            }
 
-            int[] prohibitTiles = { 104, 105, 118, 119 };
-
-            // 4. girl
-            var girl = new Girl(tileMap1.TileCenter(10, 0));
-            TileMapBuilder.AddCollisions(tileMap1, prohibitTiles, 2);
-
-            // 5. cameraMan
-            girl.Add(cameraMan);
-
-            var visual = new Actor() { Position = new Vector2(100, 100) };
-            visual.Scale = new Vector2(2, 2);
-            visual.Add(tileMap1);
-
-            var sorter = new TileMapSorter();
-            sorter.Add(girl);
-            sorter.Add(tree);
-            visual.Add(sorter);
+            visual.Add(hpBar);
+            visual.Add(maleActor);
+            visual.Add(enermy);
 
             Add(visual);
         }
@@ -55,6 +51,32 @@ namespace ProjectGameCP215
             tree.Origin = new Vector2(32 / 2, tree.RawSize.Y - 32 / 2);
             return tree;
         }
+
+        public override void Act(float deltaTime)
+        {
+            base.Act(deltaTime);
+            var keyInfo = GlobalKeyboardInfo.Value;
+
+            if (keyInfo.IsKeyPressed(Keys.Space))
+            {
+                exitNotifier.Invoke(this, 0);
+            }
+
+            for (int i = 0; i < enermy.ChildCount; i++)
+            {
+                var slime = enermy.GetChild(i) as Slime;
+                slime.AddAction(new RandomMover(slime, maleActor.Position));
+            }
+
+            hpBar.Value = maleActor.hp;
+
+            if(hpBar.Value <= 0){
+                exitNotifier.Invoke(this, 1);
+            }
+
+        }
+
+
     }
 
 }

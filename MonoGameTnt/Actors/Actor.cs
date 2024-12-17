@@ -6,6 +6,8 @@ namespace ThanaNita.MonoGameTnt
 {
     public class Actor : Transformable, Drawable
     {
+        public bool IsPaused { get; set; } = false;
+
         public object UserObject { get; set; }
         public Actor Parent { get; private set; }
         protected List<Actor> Children { get; private set; } // อาจต้องทำ List แบบที่ Delay การ delete หรือ add ได้

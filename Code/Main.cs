@@ -1,5 +1,6 @@
 ﻿using Microsoft.Xna.Framework;
 using ThanaNita.MonoGameTnt;
+using Microsoft.Xna.Framework.Input;
 
 namespace ProjectGameCP215
 {
@@ -8,23 +9,32 @@ namespace ProjectGameCP215
         CameraMan cameraMan;
         PlayState playState;
         MainMenuState mainMenuState;
-
+        GameOverState gameOverState;
 
         public Main()
             : base(startAsFullScreen: false)
         {
+
         }
+
+
 
         protected override void LoadContent()
         {
-            BackgroundColor = Color.LightGray;
+            BackgroundColor = Color.White;
+
+            // pausePlaceholder.Enable = false; // เริ่มต้นปิด PauseState
 
 
             CollisionDetectionUnit.AddDetector(1, 2);
             mainMenuState = new MainMenuState(ScreenSize, ExitNotifier);
-            All.Add(mainMenuState);
+            var actor = mainMenuState;
+            CrossHair crossHair = new CrossHair(ScreenSize / 2);
 
+            All.Add(mainMenuState);
+            All.Add(crossHair);
         }
+
 
         protected override void AfterUpdateAndCollision()
         {
@@ -32,30 +42,59 @@ namespace ProjectGameCP215
                 cameraMan.AdjustCamera();  // อัปเดตการปรับมุมกล้อง
         }
 
+
+
+
+        protected override void Update(GameTime gameTime)
+        {
+            base.Update(gameTime);
+        }
+
         private void ExitNotifier(Actor actor, int code)
         {
             if (actor == null)
                 return;
-
-            if (actor == mainMenuState)
-            {
-                mainMenuState.Detach();
-                mainMenuState = null;
-
-                // สร้างและเพิ่ม PlayState
-                cameraMan = new CameraMan(Camera, ScreenSize);
-                cameraMan.FrameLimit = new RectF(ScreenSize).CreateExpand(new Vector2(-500, -400));
-                playState = new PlayState(cameraMan, ScreenSize, ExitNotifier);
-                All.Add(playState);
-            }
-            // ถ้าเป็น PlayState ให้กลับไปที่ MainMenuState
-            else if (actor == playState)
+            // จัดการ PlayState
+            else if (actor == playState && code == 0)
             {
                 playState.Detach();
                 playState = null;
+                cameraMan = new CameraMan(Camera, new Vector2(0, 0));
                 mainMenuState = new MainMenuState(ScreenSize, ExitNotifier);
+                mainMenuState.Add(cameraMan);
                 All.Add(mainMenuState);
             }
+            // จัดการ MainMenuState
+            else if (actor == mainMenuState && code == 0)
+            {
+                mainMenuState.Detach();
+                mainMenuState = null;
+                cameraMan = new CameraMan(Camera, ScreenSize);
+                // cameraMan.FrameLimit = new RectF(ScreenSize).CreateExpand(new Vector2(-1920, -1080));
+                playState = new PlayState(cameraMan, ScreenSize, ExitNotifier, All);
+                All.Add(playState);
+            }
+
+            else if(actor == playState && code == 1)
+            {
+                playState.Detach();
+                playState = null;
+                cameraMan = new CameraMan(Camera, new Vector2(0, 0));
+                gameOverState = new GameOverState(ScreenSize, ExitNotifier);
+                gameOverState.Add(cameraMan);
+                All.Add(gameOverState);
+            }
+
+            else if(actor == gameOverState && code == 0)
+            {
+                gameOverState.Detach();
+                gameOverState = null;
+                cameraMan = new CameraMan(Camera, new Vector2(0, 0));
+                mainMenuState = new MainMenuState(ScreenSize, ExitNotifier);
+                mainMenuState.Add(cameraMan);
+                All.Add(mainMenuState);
+            }
+
         }
 
     }

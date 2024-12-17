@@ -5,13 +5,23 @@ using ThanaNita.MonoGameTnt;
 
 namespace ProjectGameCP215
 {
-    public class Girl : SpriteActor
+    public class MaleActor : SpriteActor
     {
         AnimationStates states;
         Vector2 V;
-        bool onFloor;
-        public Girl(Vector2 position)
+        MouseBullet mouseBullet;
+
+        public int hp;
+        public int maxHp;
+
+
+
+
+
+        public MaleActor(Vector2 position)
         {
+            maxHp = 100;
+            hp = maxHp;
             var size = new Vector2(32, 48);
             Position = position;
             Origin = new Vector2(16, 40);
@@ -28,27 +38,16 @@ namespace ProjectGameCP215
             states = new AnimationStates([stay, left, right, up, down]);
             AddAction(states);
 
-            var collisionObj = CollisionObj.CreateWithRect(this, RawRect.CreateAdjusted(1.0f, 1), 1);
+            var collisionObj = CollisionObj.CreateWithRect(this, 1);
             collisionObj.OnCollide = OnCollide;
             collisionObj.DebugDraw = true;
             Add(collisionObj);
+
+
+
+            Add(mouseBullet = new MouseBullet(Origin));
         }
 
-        private void ChangeVy(float deltaTime)
-        {
-            // 1. ความโน้มถ่วง (Gravitation) ทำให้เกิดความเร่ง
-            Vector2 a = new Vector2(0, 1500 / 4); // หน่วยเป็น pixel/sec*sec
-            V.Y += a.Y * deltaTime;
-
-            var keyInfo = GlobalKeyboardInfo.Value;
-            // 2. Realistic Jump - กระโดดแบบสมจริง
-            if (keyInfo.IsKeyPressed(Keys.Space) && onFloor)
-                V.Y = -750 / 2;
-
-            // 3. Jet - พุ่งขึ้นด้วยความเร็วคงที่
-            if (keyInfo.IsKeyDown(Keys.Tab))
-                V.Y = -500 / 2;
-        }
         public override void Act(float deltaTime)
         {
             var keyInfo = GlobalKeyboardInfo.Value;
@@ -83,15 +82,11 @@ namespace ProjectGameCP215
             Position += V * deltaTime;
 
             base.Act(deltaTime);
-            // onFloor = false;
         }
 
         public void OnCollide(CollisionObj objB, CollideData data)
         {
             var direction = data.objA.RelativeDirection(data.OverlapRect);
-
-            // if (direction.Y == 1)
-            //     onFloor = true;
 
             if ((direction.Y > 0 && V.Y > 0) ||
                 (direction.Y < 0 && V.Y < 0))
@@ -106,8 +101,20 @@ namespace ProjectGameCP215
                 Position -= new Vector2(data.OverlapRect.Width * direction.X, 0);
             }
 
-            //AdjustCamera();
+            var slime = objB.Actor as Slime;
+            slime?.Detach();
+
+            if(hp - 10 <= 0)
+            {
+                hp = 0;
+            }
+            else
+            {
+            hp -= 10;
+            }
         }
+
+
 
     }
 }

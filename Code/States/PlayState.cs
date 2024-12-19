@@ -12,9 +12,11 @@ namespace ProjectGameCP215
         ExitNotifier exitNotifier;
         Actor all;
         Actor enermy = new Actor();
+        Actor uiLayer = new Actor();
         MaleActor maleActor;
         ProgressBar hpBar;
         Label scoreLabel;
+        Vector2 previousMaleActorPosition;
 
         public PlayState(CameraMan cameraMan, Vector2 screenSize, ExitNotifier exitNotifier, Actor all)
         {
@@ -24,6 +26,8 @@ namespace ProjectGameCP215
             maleActor = new MaleActor(screenSize / 2);
             maleActor.Add(cameraMan);
             
+            previousMaleActorPosition = maleActor.Position;
+
              hpBar = new ProgressBar(new Vector2(200, 20), max: maleActor.maxHp, Color.Black, Color.Green)
             {
                 Position = new Vector2(50, 50),
@@ -42,12 +46,13 @@ namespace ProjectGameCP215
                 enermy.Add(new Slime(RandomUtil.Position(screenSize)));
             }
 
-            visual.Add(hpBar);
-            visual.Add(scoreLabel);
+            uiLayer.Add(hpBar);
+            uiLayer.Add(scoreLabel);
             visual.Add(maleActor);
             visual.Add(enermy);
 
             Add(visual);
+            all.Add(uiLayer);
         }
 
         public override void Act(float deltaTime)
@@ -66,14 +71,22 @@ namespace ProjectGameCP215
                 slime.AddAction(new RandomMover(slime, maleActor));
             }
 
+            // Update UI Layer to follow maleActor movement
+            Vector2 movementDelta = maleActor.Position - previousMaleActorPosition;
+            uiLayer.Position += movementDelta;
+            previousMaleActorPosition = maleActor.Position;
+
             hpBar.Value = maleActor.hp;
             scoreLabel.Text = "Score: " + maleActor.score;
-
 
             if(hpBar.Value <= 0){
                 exitNotifier.Invoke(this, 1);
             }
 
+        }
+
+        public int GetScore(){
+            return maleActor.score;
         }
 
 

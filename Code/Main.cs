@@ -33,6 +33,7 @@ namespace ProjectGameCP215
 
             All.Add(mainMenuState);
             All.Add(crossHair);
+            base.LoadContent();
         }
 
 
@@ -75,17 +76,19 @@ namespace ProjectGameCP215
                 All.Add(playState);
             }
 
-            else if(actor == playState && code == 1)
+            else if (actor == playState && code == 1)
             {
+                
+                cameraMan = new CameraMan(Camera, new Vector2(0, 0));
+                int finalScore = playState.GetScore(); // ดึงคะแนนสุดท้าย
                 playState.Detach();
                 playState = null;
-                cameraMan = new CameraMan(Camera, new Vector2(0, 0));
-                gameOverState = new GameOverState(ScreenSize, ExitNotifier);
+                gameOverState = new GameOverState(ScreenSize, ExitNotifier, finalScore);
                 gameOverState.Add(cameraMan);
                 All.Add(gameOverState);
             }
 
-            else if(actor == gameOverState && code == 0)
+            else if (actor == gameOverState && code == 0)
             {
                 gameOverState.Detach();
                 gameOverState = null;

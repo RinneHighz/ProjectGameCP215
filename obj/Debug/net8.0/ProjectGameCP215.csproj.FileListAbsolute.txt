@@ -1,33 +1,66 @@
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\obj\Debug\net8.0\ProjectGameCP215.csproj.AssemblyReference.cache
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\obj\Debug\net8.0\ProjectGameCP215.GeneratedMSBuildEditorConfig.editorconfig
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\obj\Debug\net8.0\ProjectGameCP215.AssemblyInfoInputs.cache
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\obj\Debug\net8.0\ProjectGameCP215.AssemblyInfo.cs
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\obj\Debug\net8.0\ProjectGameCP215.csproj.CoreCompileInputs.cache
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\obj\Debug\net8.0\ProjectGameCP215.sourcelink.json
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\ProjectGameCP215.exe
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\ProjectGameCP215.deps.json
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\ProjectGameCP215.runtimeconfig.json
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\ProjectGameCP215.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\ProjectGameCP215.pdb
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\Cyotek.Drawing.BitmapFont.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\FontStashSharp.Base.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\FontStashSharp.MonoGame.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\FontStashSharp.Rasterizers.StbTrueTypeSharp.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\MonoGame.Extended.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\MonoGame.Framework.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\NVorbis.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\StbImageSharp.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\StbTrueTypeSharp.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\runtimes\linux-x64\native\libopenal.so.1
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\runtimes\osx\native\libopenal.1.dylib
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\runtimes\win-x64\native\soft_oal.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\runtimes\win-x86\native\soft_oal.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\runtimes\linux-x64\native\libSDL2-2.0.so.0
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\runtimes\osx\native\libSDL2.dylib
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\bin\Debug\net8.0\runtimes\win-x64\native\SDL2.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\obj\Debug\net8.0\ProjectG.8F65A213.Up2Date
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\obj\Debug\net8.0\ProjectGameCP215.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\obj\Debug\net8.0\refint\ProjectGameCP215.dll
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\obj\Debug\net8.0\ProjectGameCP215.pdb
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\obj\Debug\net8.0\ProjectGameCP215.genruntimeconfig.cache
-C:\Users\rueng\OneDrive - Srinakharinwirot University\University\Year4\CP215\Games\ProjectGameCP215\obj\Debug\net8.0\ref\ProjectGameCP215.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.csproj.AssemblyReference.cache
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.GeneratedMSBuildEditorConfig.editorconfig
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.AssemblyInfoInputs.cache
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.AssemblyInfo.cs
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.csproj.CoreCompileInputs.cache
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.sourcelink.json
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/ProjectGameCP215.exe
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/ProjectGameCP215.deps.json
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/ProjectGameCP215.runtimeconfig.json
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/ProjectGameCP215.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/ProjectGameCP215.pdb
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/Cyotek.Drawing.BitmapFont.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/FontStashSharp.Base.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/FontStashSharp.MonoGame.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/FontStashSharp.Rasterizers.StbTrueTypeSharp.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/MonoGame.Extended.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/MonoGame.Framework.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/NVorbis.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/StbImageSharp.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/StbTrueTypeSharp.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/runtimes/linux-x64/native/libopenal.so.1
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/runtimes/osx/native/libopenal.1.dylib
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/runtimes/win-x64/native/soft_oal.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/runtimes/win-x86/native/soft_oal.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/runtimes/osx/native/libSDL2.dylib
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/bin/Debug/net8.0/runtimes/win-x64/native/SDL2.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/obj/Debug/net8.0/ProjectG.8F65A213.Up2Date
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/obj/Debug/net8.0/refint/ProjectGameCP215.dll
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.pdb
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.genruntimeconfig.cache
+C:/Users/rueng/OneDrive - Srinakharinwirot University/University/Year4/CP215/Games/ProjectGameCP215/obj/Debug/net8.0/ref/ProjectGameCP215.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/ProjectGameCP215
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/ProjectGameCP215.deps.json
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/ProjectGameCP215.runtimeconfig.json
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/ProjectGameCP215.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/ProjectGameCP215.pdb
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/Cyotek.Drawing.BitmapFont.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/FontStashSharp.Base.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/FontStashSharp.MonoGame.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/FontStashSharp.Rasterizers.StbTrueTypeSharp.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/MonoGame.Extended.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/MonoGame.Framework.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/NVorbis.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/StbImageSharp.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/StbTrueTypeSharp.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/runtimes/linux-x64/native/libopenal.so.1
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/runtimes/osx/native/libopenal.1.dylib
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/runtimes/win-x64/native/soft_oal.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/runtimes/win-x86/native/soft_oal.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/runtimes/linux-x64/native/libSDL2-2.0.so.0
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/runtimes/osx/native/libSDL2.dylib
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/bin/Debug/net8.0/runtimes/win-x64/native/SDL2.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.csproj.AssemblyReference.cache
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.GeneratedMSBuildEditorConfig.editorconfig
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.AssemblyInfoInputs.cache
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.AssemblyInfo.cs
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.csproj.CoreCompileInputs.cache
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.sourcelink.json
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/Debug/net8.0/ProjectG.8F65A213.Up2Date
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/Debug/net8.0/refint/ProjectGameCP215.dll
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.pdb
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/Debug/net8.0/ProjectGameCP215.genruntimeconfig.cache
+/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/Debug/net8.0/ref/ProjectGameCP215.dll

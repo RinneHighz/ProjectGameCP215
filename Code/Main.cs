@@ -1,6 +1,7 @@
 ﻿using Microsoft.Xna.Framework;
 using ThanaNita.MonoGameTnt;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace ProjectGameCP215
 {
@@ -10,6 +11,9 @@ namespace ProjectGameCP215
         PlayState playState;
         MainMenuState mainMenuState;
         GameOverState gameOverState;
+
+        
+
 
         public Main()
             : base(startAsFullScreen: false)
@@ -21,7 +25,17 @@ namespace ProjectGameCP215
 
         protected override void LoadContent()
         {
-            BackgroundColor = Color.White;
+            //BackgroundColor = Color.Black;
+            var texture1 = TextureCache.Get("backgroundimg.png");
+            var backgroundimg = new SpriteActor(texture1);
+            All.Add(backgroundimg);
+
+            
+
+            
+
+            
+            
 
             // pausePlaceholder.Enable = false; // เริ่มต้นปิด PauseState
 
@@ -33,6 +47,7 @@ namespace ProjectGameCP215
 
             All.Add(mainMenuState);
             All.Add(crossHair);
+        
             base.LoadContent();
         }
 
@@ -99,6 +114,8 @@ namespace ProjectGameCP215
             }
 
         }
+
+        
 
     }
 }

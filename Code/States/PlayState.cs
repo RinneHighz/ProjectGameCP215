@@ -3,6 +3,8 @@ using MonoGame.Extended;
 using MonoGame.Extended.Screens;
 using ThanaNita.MonoGameTnt;
 using Microsoft.Xna.Framework.Input;
+using System.Runtime.CompilerServices;
+using Microsoft.VisualBasic;
 
 namespace ProjectGameCP215
 {
@@ -17,6 +19,11 @@ namespace ProjectGameCP215
         ProgressBar hpBar;
         Label scoreLabel;
         Vector2 previousMaleActorPosition;
+
+        TextureRegion[] tiles;
+        TileMap TileMap;
+
+
 
         public PlayState(CameraMan cameraMan, Vector2 screenSize, ExitNotifier exitNotifier, Actor all)
         {
@@ -48,11 +55,44 @@ namespace ProjectGameCP215
 
             uiLayer.Add(hpBar);
             uiLayer.Add(scoreLabel);
+            
+
+
+
+
+
+            var builder = new TileMapBuilder();
+            var Layer0 = builder.CreateSimple(
+                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._frame.csv");
+            var Layer1 = builder.CreateSimple(
+                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._layer1.csv");
+            var Layer2 = builder.CreateSimple(
+                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._layer2.csv");
+            var Layer3 = builder.CreateSimple(
+                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._layer3.csv");
+            var Layer4 = builder.CreateSimple(
+                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._layer4.csv");
+            var Layer5 = builder.CreateSimple(
+                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._layer5.csv");
+            var Layer6 = builder.CreateSimple(
+                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._layer6.csv");
+
+            
+            visual.Add(Layer0);
+            visual.Add(Layer1);
+            visual.Add(Layer2);
+            visual.Add(Layer3);
+            visual.Add(Layer4);
+            visual.Add(Layer5);
+            visual.Add(Layer6);
+
             visual.Add(maleActor);
             visual.Add(enermy);
-
             Add(visual);
-            all.Add(uiLayer);
+            Add(uiLayer);
+            
+        
+
         }
 
         public override void Act(float deltaTime)
@@ -88,6 +128,15 @@ namespace ProjectGameCP215
         public int GetScore(){
             return maleActor.score;
         }
+
+     
+
+        
+
+    
+
+
+
 
 
     }

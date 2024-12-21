@@ -15,13 +15,19 @@ namespace ProjectGameCP215
             Position = new Vector2(0, 0);
             this.exitNotifier = exitNotifier;
 
-            var button1 = new Button("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50,
-                Color.Brown, "Button 1", new Vector2(300, 100));
-            button1.Position = new Vector2(50, 500);
-            button1.ButtonClicked += Button1_ButtonClicked;
+            // var button1 = new Button("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50,
+            //     Color.Brown, "Start", new Vector2(300, 100));
+            // button1.Position = new Vector2(50, 500);
+            // button1.ButtonClicked += Button1_ButtonClicked;
+            // Add(button1);
 
 
-            Add(button1);
+            //ImageButton 
+            var button2 = new TextureRegion(TextureCache.Get("imgbutton.png"),new RectF(0,0,300,100));
+            var imgbutton = new ImageButton(button2);
+            imgbutton.Position = new Vector2(50,500);
+            imgbutton.ButtonClicked += Button1_ButtonClicked;
+            Add(imgbutton);
         }
 
         private void Button1_ButtonClicked(GenericButton button)

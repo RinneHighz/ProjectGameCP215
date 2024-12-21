@@ -2,12 +2,16 @@
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using ThanaNita.MonoGameTnt;
+using Microsoft.Xna.Framework.Media;
+using Microsoft.Xna.Framework.Audio;
+using System;
 
 namespace ProjectGameCP215
 {
     public class MainMenuState : Actor
     {
         ExitNotifier exitNotifier;
+        Song backgroundMusic;
         public MainMenuState(Vector2 screenSize, ExitNotifier exitNotifier)
         {
             // Origin = screenSize / 2;
@@ -15,11 +19,10 @@ namespace ProjectGameCP215
             Position = new Vector2(0, 0);
             this.exitNotifier = exitNotifier;
 
-            // var button1 = new Button("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50,
-            //     Color.Brown, "Start", new Vector2(300, 100));
-            // button1.Position = new Vector2(50, 500);
-            // button1.ButtonClicked += Button1_ButtonClicked;
-            // Add(button1);
+            backgroundMusic = Song.FromUri("Song01",
+                      new Uri("Content/Resource/Sound/MainMenuBGM.ogg", UriKind.Relative));
+            MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.Volume = 4;
 
 
             //ImageButton 
@@ -34,5 +37,9 @@ namespace ProjectGameCP215
         {
             exitNotifier.Invoke(this, 0);
         }
+
+        // public void stopBGM(){
+        //     MediaPlayer.Stop();
+        // }
     }
 }

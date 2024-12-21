@@ -3,6 +3,8 @@ using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework;
 using ThanaNita.MonoGameTnt;
 using System.Linq;
+using Microsoft.Xna.Framework.Media;
+using System;
 
 namespace ProjectGameCP215
 {
@@ -10,10 +12,17 @@ namespace ProjectGameCP215
     {
         ExitNotifier exitNotifier;
         Text gameOverText;
+        Song backgroundMusic;
+
         public GameOverState(Vector2 screenSize, ExitNotifier exitNotifier, int finalScore)
         {
             Position = new Vector2(0, 0);
             this.exitNotifier = exitNotifier;
+
+            backgroundMusic = Song.FromUri("Song01",
+                      new Uri("Content/Resource/Sound/DeathSound.ogg", UriKind.Relative));
+
+            MediaPlayer.Play(backgroundMusic);
 
             // บันทึกคะแนนหากไม่ใช่ 0
             if (finalScore > 0)

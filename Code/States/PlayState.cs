@@ -5,6 +5,8 @@ using ThanaNita.MonoGameTnt;
 using Microsoft.Xna.Framework.Input;
 using System.Runtime.CompilerServices;
 using Microsoft.VisualBasic;
+using Microsoft.Xna.Framework.Media;
+using System;
 
 namespace ProjectGameCP215
 {
@@ -19,13 +21,10 @@ namespace ProjectGameCP215
         ProgressBar hpBar;
         Label scoreLabel;
         Vector2 previousMaleActorPosition;
-
         TextureRegion[] tiles;
         TileMap TileMap;
-
         CollisionDetection collisionDetectionUnit;
-
-
+        Song backgroundMusic;
 
         public PlayState(CameraMan cameraMan, Vector2 screenSize, ExitNotifier exitNotifier, Actor all, CollisionDetection CollisionDetection)
         {
@@ -35,10 +34,14 @@ namespace ProjectGameCP215
 
             maleActor = new MaleActor(screenSize / 2);
             maleActor.Add(cameraMan);
-            
+
+            backgroundMusic = Song.FromUri("Song01",
+                      new Uri("Content/Resource/Sound/PlayStateBGM.ogg", UriKind.Relative));
+
+            MediaPlayer.Play(backgroundMusic);
             previousMaleActorPosition = maleActor.Position;
 
-             hpBar = new ProgressBar(new Vector2(200, 20), max: maleActor.maxHp, Color.Black, Color.Green)
+            hpBar = new ProgressBar(new Vector2(200, 20), max: maleActor.maxHp, Color.Black, Color.Green)
             {
                 Position = new Vector2(50, 50),
                 Value = maleActor.hp
@@ -47,18 +50,18 @@ namespace ProjectGameCP215
             scoreLabel = new Label("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50, Color.Brown, "Score: 0")
             {
                 Position = new Vector2(50, 100)
-            };  
+            };
 
             Actor visual = new Actor();
 
-            for (int i = 0; i < 50; i++)
-            {
-                enermy.Add(new Slime(RandomUtil.Position(screenSize)));
-            }
+            // for (int i = 0; i < 50; i++)
+            // {
+            //     enermy.Add(new Slime(RandomUtil.Position(screenSize)));
+            // }
 
             uiLayer.Add(hpBar);
             uiLayer.Add(scoreLabel);
-            
+
 
 
 
@@ -66,21 +69,21 @@ namespace ProjectGameCP215
 
             var builder = new TileMapBuilder();
             var Layer0 = builder.CreateSimple(
-                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._frame.csv");
+                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._frame.csv");
             var Layer1 = builder.CreateSimple(
-                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._layer1.csv");
+                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._layer1.csv");
             var Layer2 = builder.CreateSimple(
-                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._layer2.csv");
+                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._layer2.csv");
             var Layer3 = builder.CreateSimple(
-                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._layer3.csv");
+                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._layer3.csv");
             var Layer4 = builder.CreateSimple(
-                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._layer4.csv");
+                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._layer4.csv");
             var Layer5 = builder.CreateSimple(
-                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._layer5.csv");
+                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._layer5.csv");
             var Layer6 = builder.CreateSimple(
-                "CombineTileSet.png",new Vector2(48,48),countX:80, countY:80,"Castle Game._layer6.csv");
+                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._layer6.csv");
 
-            
+
             visual.Add(Layer0);
             visual.Add(Layer1);
             visual.Add(Layer2);
@@ -96,16 +99,16 @@ namespace ProjectGameCP215
 
             int[] prohibitTiles = [322, 323, 483, 3083, 3084, 3163, 3164, 3243, 3244];
 
-            var maleactor = new MaleActor(Layer0.TileCenter(0,0));
-            TileMapBuilder.AddCollisions(Layer0,prohibitTiles,2);
-            collisionDetectionUnit.AddDetector(1,2);
+            var maleactor = new MaleActor(Layer0.TileCenter(0, 0));
+            TileMapBuilder.AddCollisions(Layer0, prohibitTiles, 2);
+            collisionDetectionUnit.AddDetector(1, 2);
 
 
-            
 
-            
-            
-        
+
+
+
+
 
         }
 
@@ -133,23 +136,25 @@ namespace ProjectGameCP215
             hpBar.Value = maleActor.hp;
             scoreLabel.Text = "Score: " + maleActor.score;
 
-            if(hpBar.Value <= 0){
+            if (hpBar.Value <= 0)
+            {
                 exitNotifier.Invoke(this, 1);
             }
 
         }
 
-        public int GetScore(){
+        public int GetScore()
+        {
             return maleActor.score;
         }
 
-    
 
-     
 
-        
 
-    
+
+
+
+
 
 
 

@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using ThanaNita.MonoGameTnt;
 
 namespace ProjectGameCP215
@@ -8,11 +9,14 @@ namespace ProjectGameCP215
     {
         Vector2 startPosition;
         MaleActor player; // Reference ไปยัง MaleActor
+        SoundEffect gunShot;
         public MouseBullet(Vector2 startPosition, MaleActor player)
         {
             this.player = player; // รับ MaleActor เป็นพารามิเตอร์
             this.RawSize = startPosition;
             
+
+            gunShot = SoundEffect.FromFile("Content/Resource/Sound/GunShotEffect.wav");
             Add(new CrossHair(startPosition));
             var collisionObj = CollisionObj.CreateWithRect(this, 1);
             collisionObj.OnCollide = OnCollide;
@@ -44,7 +48,9 @@ namespace ProjectGameCP215
                 var ball = new Ball(v, player) { Position = startPosition }; // ส่ง player ไปยัง Ball
                 Add(ball);
 
+                gunShot.Play();
                 time = -1.0f; // cooldown
+
             }
         }
     }

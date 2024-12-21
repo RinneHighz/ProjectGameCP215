@@ -12,7 +12,7 @@ namespace ProjectGameCP215
         MainMenuState mainMenuState;
         GameOverState gameOverState;
 
-        
+
 
 
         public Main()
@@ -30,13 +30,13 @@ namespace ProjectGameCP215
             var backgroundimg = new SpriteActor(texture1);
             All.Add(backgroundimg);
 
-            
-            
 
-            
 
-            
-            
+
+
+
+
+
 
             // pausePlaceholder.Enable = false; // เริ่มต้นปิด PauseState
 
@@ -48,7 +48,7 @@ namespace ProjectGameCP215
 
             All.Add(mainMenuState);
             All.Add(crossHair);
-        
+
             base.LoadContent();
         }
 
@@ -74,6 +74,7 @@ namespace ProjectGameCP215
             // จัดการ PlayState
             else if (actor == playState && code == 0)
             {
+                playState.stopBGM();
                 playState.Detach();
                 playState = null;
                 cameraMan = new CameraMan(Camera, new Vector2(0, 0));
@@ -84,19 +85,21 @@ namespace ProjectGameCP215
             // จัดการ MainMenuState
             else if (actor == mainMenuState && code == 0)
             {
+                mainMenuState.stopBGM();
                 mainMenuState.Detach();
                 mainMenuState = null;
                 cameraMan = new CameraMan(Camera, ScreenSize);
                 // cameraMan.FrameLimit = new RectF(ScreenSize).CreateExpand(new Vector2(-1920, -1080));
-                playState = new PlayState(cameraMan, ScreenSize, ExitNotifier, All,CollisionDetectionUnit);
+                playState = new PlayState(cameraMan, ScreenSize, ExitNotifier, All, CollisionDetectionUnit);
                 All.Add(playState);
             }
 
             else if (actor == playState && code == 1)
             {
-                
+
                 cameraMan = new CameraMan(Camera, new Vector2(0, 0));
                 int finalScore = playState.GetScore(); // ดึงคะแนนสุดท้าย
+                playState.stopBGM();
                 playState.Detach();
                 playState = null;
                 gameOverState = new GameOverState(ScreenSize, ExitNotifier, finalScore);
@@ -106,6 +109,7 @@ namespace ProjectGameCP215
 
             else if (actor == gameOverState && code == 0)
             {
+                gameOverState.stopBGM();
                 gameOverState.Detach();
                 gameOverState = null;
                 cameraMan = new CameraMan(Camera, new Vector2(0, 0));
@@ -116,7 +120,7 @@ namespace ProjectGameCP215
 
         }
 
-        
+
 
     }
 }

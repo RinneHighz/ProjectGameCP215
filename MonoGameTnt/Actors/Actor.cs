@@ -1,4 +1,5 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Media;
 using System.Collections.Generic;
 using System.Diagnostics;
 
@@ -165,6 +166,10 @@ namespace ThanaNita.MonoGameTnt
         protected DrawState CombineState(DrawState state)
         {
             return state.Combine(GetMatrix(), (ColorF)Color);
+        }
+
+        public void stopBGM(){
+            MediaPlayer.Stop();
         }
     }
 }

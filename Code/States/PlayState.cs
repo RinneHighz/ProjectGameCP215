@@ -23,12 +23,15 @@ namespace ProjectGameCP215
         TextureRegion[] tiles;
         TileMap TileMap;
 
+        CollisionDetection collisionDetectionUnit;
 
 
-        public PlayState(CameraMan cameraMan, Vector2 screenSize, ExitNotifier exitNotifier, Actor all)
+
+        public PlayState(CameraMan cameraMan, Vector2 screenSize, ExitNotifier exitNotifier, Actor all, CollisionDetection CollisionDetection)
         {
             this.exitNotifier = exitNotifier;
             this.all = all;
+            this.collisionDetectionUnit = CollisionDetection;
 
             maleActor = new MaleActor(screenSize / 2);
             maleActor.Add(cameraMan);
@@ -90,6 +93,17 @@ namespace ProjectGameCP215
             visual.Add(enermy);
             Add(visual);
             Add(uiLayer);
+
+            int[] prohibitTiles = [322, 323, 483, 3083, 3084, 3163, 3164, 3243, 3244];
+
+            var maleactor = new MaleActor(Layer0.TileCenter(0,0));
+            TileMapBuilder.AddCollisions(Layer0,prohibitTiles,2);
+            collisionDetectionUnit.AddDetector(1,2);
+
+
+            
+
+            
             
         
 
@@ -128,6 +142,8 @@ namespace ProjectGameCP215
         public int GetScore(){
             return maleActor.score;
         }
+
+    
 
      
 

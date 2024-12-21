@@ -31,6 +31,7 @@ namespace ProjectGameCP215
             All.Add(backgroundimg);
 
             
+            
 
             
 
@@ -87,7 +88,7 @@ namespace ProjectGameCP215
                 mainMenuState = null;
                 cameraMan = new CameraMan(Camera, ScreenSize);
                 // cameraMan.FrameLimit = new RectF(ScreenSize).CreateExpand(new Vector2(-1920, -1080));
-                playState = new PlayState(cameraMan, ScreenSize, ExitNotifier, All);
+                playState = new PlayState(cameraMan, ScreenSize, ExitNotifier, All,CollisionDetectionUnit);
                 All.Add(playState);
             }
 

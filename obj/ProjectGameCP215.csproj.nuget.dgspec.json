@@ -1,25 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/ProjectGameCP215.csproj": {}
+    "C:\\Users\\Supassorn Pumankong\\OneDrive\\year4\\CP215_Project\\ProjectGameCP215\\ProjectGameCP215.csproj": {}
   },
   "projects": {
-    "/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/ProjectGameCP215.csproj": {
+    "C:\\Users\\Supassorn Pumankong\\OneDrive\\year4\\CP215_Project\\ProjectGameCP215\\ProjectGameCP215.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/ProjectGameCP215.csproj",
+        "projectUniqueName": "C:\\Users\\Supassorn Pumankong\\OneDrive\\year4\\CP215_Project\\ProjectGameCP215\\ProjectGameCP215.csproj",
         "projectName": "ProjectGameCP215",
-        "projectPath": "/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/ProjectGameCP215.csproj",
-        "packagesPath": "/Users/littleusagi/.nuget/packages/",
-        "outputPath": "/Users/littleusagi/University/Year_4/CP215/ProjectGameCP215/obj/",
+        "projectPath": "C:\\Users\\Supassorn Pumankong\\OneDrive\\year4\\CP215_Project\\ProjectGameCP215\\ProjectGameCP215.csproj",
+        "packagesPath": "C:\\Users\\Supassorn Pumankong\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Supassorn Pumankong\\OneDrive\\year4\\CP215_Project\\ProjectGameCP215\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/littleusagi/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\Supassorn Pumankong\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net8.0"
         ],
         "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -76,7 +78,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.401/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400/PortableRuntimeIdentifierGraph.json"
         }
       }
     }

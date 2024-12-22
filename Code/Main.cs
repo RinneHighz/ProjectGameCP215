@@ -26,7 +26,7 @@ namespace ProjectGameCP215
         protected override void LoadContent()
         {
             //BackgroundColor = Color.Black;
-            var texture1 = TextureCache.Get("backgroundimg.png");
+            var texture1 = TextureCache.Get("BG.png");
             var backgroundimg = new SpriteActor(texture1);
             All.Add(backgroundimg);
 

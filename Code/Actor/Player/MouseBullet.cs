@@ -17,18 +17,9 @@ namespace ProjectGameCP215
             
 
             gunShot = SoundEffect.FromFile("Content/Resource/Sound/GunShotEffect.wav");
-            Add(new CrossHair(startPosition));
-            var collisionObj = CollisionObj.CreateWithRect(this, 1);
-            collisionObj.OnCollide = OnCollide;
-            Add(collisionObj);
         }
 
-        public void OnCollide(CollisionObj objB, CollideData collideData)
-        {
-            var enemy = objB.Actor as Slime;
-            enemy?.Detach();
-
-        }
+       
 
         float time;
         public override void Act(float deltaTime)
@@ -49,7 +40,7 @@ namespace ProjectGameCP215
                 Add(ball);
 
                 gunShot.Play();
-                time = -1.0f; // cooldown
+                time = -0.1f; // cooldown
 
             }
         }

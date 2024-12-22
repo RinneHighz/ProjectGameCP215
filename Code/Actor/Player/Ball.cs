@@ -15,6 +15,7 @@ namespace ProjectGameCP215
             this.player = player;
             SetTexture(TextureCache.Get("Content/Resource/SpriteSheet/Ball.png"));
             Origin = RawSize / 2;
+            Scale = new Vector2(0.5f, 0.5f);
 
             AddAction(Mover = new Mover(this, v));
             var collisionObj = CollisionObj.CreateWithRect(this, 1);
@@ -30,16 +31,23 @@ namespace ProjectGameCP215
                 this.Detach();  // ลบ Ball หลังจากชน
 
                 player.score += 1; // เพิ่มคะแนนให้ MaleActor
+                player.exp += 2; // เพิ่ม EXP 2 จาก Slime
+                player.CheckLevelUp(); // ส่ง PlayState ไปด้วย
             }
 
             var boss = objB.Actor as Boss;
             if (boss != null)
             {
-                if(boss.hp - 10 >= 0){
+                if (boss.hp - 10 >= 0)
+                {
                     boss.hp -= 10;
-                }else{
+                }
+                else
+                {
                     boss.Detach();
                     player.score += 10;
+                    player.exp += 7; // เพิ่ม EXP 7 จาก Boss
+                    player.CheckLevelUp();
                 }
                 this.Detach();  // ลบ Ball หลังจากชน
 

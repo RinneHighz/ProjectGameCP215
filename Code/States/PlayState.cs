@@ -19,21 +19,30 @@ namespace ProjectGameCP215
         Actor uiLayer = new Actor();
         MaleActor maleActor;
         ProgressBar hpBar;
-        Label scoreLabel;
+        Label scoreLabel, levelLabel, damageLabel, maxHpLabel;
+        
         Vector2 previousMaleActorPosition;
         TextureRegion[] tiles;
         TileMap TileMap;
         CollisionDetection collisionDetectionUnit;
         Song backgroundMusic;
+        Vector2 screenSize;
+
+        private float elapsedTime = 0f; // เก็บเวลาที่ผ่านไปทั้งหมด
+        private float spawnInterval = 5f; // ระยะเวลาที่จะเกิดศัตรูใหม่
+        private int slimeCount = 1; // จำนวน Slime ที่จะเกิดในแต่ละครั้ง
+        private int bossCount = 2; // จำนวน Boss ที่จะเกิดในแต่ละครั้ง
+        private Random random = new Random(); // สำหรับสุ่มตำแหน่ง
 
         public PlayState(CameraMan cameraMan, Vector2 screenSize, ExitNotifier exitNotifier, Actor all, CollisionDetection CollisionDetection)
         {
             this.exitNotifier = exitNotifier;
             this.all = all;
             this.collisionDetectionUnit = CollisionDetection;
+            this.screenSize = screenSize;
 
-            maleActor = new MaleActor(screenSize / 2);
-            maleActor.Add(cameraMan);
+            maleActor = new MaleActor(new Vector2(screenSize.X / 2 - 100, screenSize.Y / 2), this);
+            // maleActor.Add(cameraMan);
 
             backgroundMusic = Song.FromUri("Song01",
                       new Uri("Content/Resource/Sound/PlayStateBGM.ogg", UriKind.Relative));
@@ -47,6 +56,18 @@ namespace ProjectGameCP215
                 Value = maleActor.hp
             };
 
+          
+            damageLabel = new Label("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50, Color.Brown, "Damage: " + maleActor.damage)
+            {
+                Position = new Vector2(50, 200)
+            };
+            maxHpLabel = new Label("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50, Color.Brown, "Max HP: " + maleActor.maxHp)
+            {
+                Position = new Vector2(50, 250)
+            };
+
+
+
             scoreLabel = new Label("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50, Color.Brown, "Score: 0")
             {
                 Position = new Vector2(50, 100)
@@ -54,62 +75,50 @@ namespace ProjectGameCP215
 
             Actor visual = new Actor();
 
-            for (int i = 0; i < 4; i++)
+            var texture1 = TextureCache.Get("Content/Resource/TileMap/map.png");
+            var backgroundimg = new SpriteActor(texture1);
+            Add(backgroundimg);
+
+            var builder = new TileMapBuilder();
+
+            var CollideLayer = builder.CreateSimple(
+                "Content/Resource/TileMap/CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Content/Resource/TileMap/map.csv");
+
+            visual.Add(CollideLayer);
+
+            int[] prohibitTiles = [0];
+
+
+
+            TileMapBuilder.AddCollisions(CollideLayer, prohibitTiles, 3);
+
+            collisionDetectionUnit.AddDetector(1, 3);
+
+            levelLabel = new Label("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50, Color.Brown, "Level: 1")
             {
-                enermy.Add(new Boss(RandomUtil.Position(screenSize)));
-            }
+                Position = new Vector2(50, 150)
+            };
+            uiLayer.Add(levelLabel);
 
             uiLayer.Add(hpBar);
             uiLayer.Add(scoreLabel);
 
 
+            uiLayer.Add(damageLabel);
+            uiLayer.Add(maxHpLabel);
 
-
-
-
-            var builder = new TileMapBuilder();
-            var Layer0 = builder.CreateSimple(
-                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._frame.csv");
-            var Layer1 = builder.CreateSimple(
-                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._layer1.csv");
-            var Layer2 = builder.CreateSimple(
-                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._layer2.csv");
-            var Layer3 = builder.CreateSimple(
-                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._layer3.csv");
-            var Layer4 = builder.CreateSimple(
-                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._layer4.csv");
-            var Layer5 = builder.CreateSimple(
-                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._layer5.csv");
-            var Layer6 = builder.CreateSimple(
-                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "Castle Game._layer6.csv");
-
-            var LayerCollide = builder.CreateSimple(
-                "CombineTileSet.png", new Vector2(48, 48), countX: 80, countY: 80, "CastleCollide.csv");
-
-
-            visual.Add(Layer1);
-            visual.Add(Layer2);
-            visual.Add(Layer3);
-            visual.Add(Layer4);
-            visual.Add(Layer5);
-            visual.Add(Layer6);
-            visual.Add(Layer0);
-            visual.Add(LayerCollide);
 
 
             visual.Add(maleActor);
             visual.Add(enermy);
-            
+
             Add(visual);
             Add(uiLayer);
 
-            int[] prohibitTiles = [1];
 
 
 
-            TileMapBuilder.AddCollisions(LayerCollide, prohibitTiles, 3);
 
-            collisionDetectionUnit.AddDetector(1, 3);
 
         }
 
@@ -117,6 +126,20 @@ namespace ProjectGameCP215
         public override void Act(float deltaTime)
         {
             base.Act(deltaTime);
+            elapsedTime += deltaTime;
+            if (elapsedTime >= spawnInterval)
+            {
+                elapsedTime = 0f;
+                spawnInterval = Math.Max(1f, spawnInterval * 0.9f); // ลดระยะเวลาการเกิดให้ถี่ขึ้น
+                slimeCount++;
+                // if (slimeCount % 5 == 0) bossCount++; // เพิ่ม Boss ทุก ๆ 5 รอบของ Slime
+
+                SpawnEnemies();
+            }
+
+
+
+
             var keyInfo = GlobalKeyboardInfo.Value;
 
             if (keyInfo.IsKeyPressed(Keys.Space))
@@ -124,19 +147,19 @@ namespace ProjectGameCP215
                 exitNotifier.Invoke(this, 0);
             }
 
-            // for (int i = 0; i < enermy.ChildCount; i++)
-            // {
-            //     var slime = enermy.GetChild(i) as Slime;
-            //     slime.AddAction(new RandomMover(slime, maleActor));
-            // }
-
-            // Update UI Layer to follow maleActor movement
-            Vector2 movementDelta = maleActor.Position - previousMaleActorPosition;
-            uiLayer.Position += movementDelta;
-            previousMaleActorPosition = maleActor.Position;
+            for (int i = 0; i < enermy.ChildCount; i++)
+            {
+                enermy.GetChild(i).ClearAction();
+                enermy.GetChild(i).AddAction(new RandomMover(enermy.GetChild(i), maleActor));
+            }
 
             hpBar.Value = maleActor.hp;
+            hpBar.Max = maleActor.maxHp;
             scoreLabel.Text = "Score: " + maleActor.score;
+            levelLabel.Text = "Level: " + maleActor.level;
+            damageLabel.Text = "Damage: " + maleActor.damage;
+            maxHpLabel.Text = "Max HP: " + maleActor.maxHp;
+
 
             if (hpBar.Value <= 0)
             {
@@ -150,22 +173,59 @@ namespace ProjectGameCP215
             return maleActor.score;
         }
 
-        
+        public void ShowUpgradeOptions()
+        {
+            // สร้างตัวเลือกเลเวลอัพ
+            var upgradeMenu = new Actor();
+
+            var option1 = new Button("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50,
+                Color.Brown, "Increase Damage", new Vector2(300, 100));
+            option1.ButtonClicked += (btn) =>
+            {
+                maleActor.damage += 5;
+                upgradeMenu.Detach(); // เอาเมนูออก
+            };
+
+            var option2 = new Button("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50,
+                Color.Brown, "Increase Max Hp", new Vector2(300, 100));
+            option2.ButtonClicked += (btn) =>
+            {
+                maleActor.maxHp += 20;
+                maleActor.hp = maleActor.maxHp;
+                upgradeMenu.Detach(); // เอาเมนูออก
+            };
+
+            // ตำแหน่งของปุ่ม
+            option1.Position = new Vector2(screenSize.X / 2 - 100, screenSize.Y / 2 - 50);
+            option2.Position = new Vector2(screenSize.X / 2 - 100, screenSize.Y / 2 + 50);
+
+            upgradeMenu.Add(option1);
+            upgradeMenu.Add(option2);
+            Add(upgradeMenu); // เพิ่มเมนูใน PlayState
+        }
 
 
+        private void SpawnEnemies()
+        {
+            var screenBounds = new Rectangle(0, 0, (int)screenSize.X, (int)screenSize.Y);
 
+            // เพิ่ม Slime
+            for (int i = 0; i < slimeCount; i++)
+            {
+                var position = RandomUtil.Position(screenSize);
+                var slime = new Slime(position);
+                enermy.Add(slime);
+            }
 
-
-
-
-
-
-
-
-
-
+            // เพิ่ม Boss
+            for (int i = 0; i < bossCount; i++)
+            {
+                var position = RandomUtil.Position(screenSize);
+                var boss = new Boss(position);
+                enermy.Add(boss);
+            }
+        }
     }
-
 }
 
 

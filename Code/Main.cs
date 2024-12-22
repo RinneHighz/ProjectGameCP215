@@ -25,17 +25,17 @@ namespace ProjectGameCP215
 
         protected override void LoadContent()
         {
-            //BackgroundColor = Color.Black;
-            var texture1 = TextureCache.Get("BG.png");
-            var backgroundimg = new SpriteActor(texture1);
-            All.Add(backgroundimg);
+            BackgroundColor = Color.White;
+            //background in game
+        
+
 
             // pausePlaceholder.Enable = false; // เริ่มต้นปิด PauseState
 
 
             CollisionDetectionUnit.AddDetector(1, 2);
-            CollisionDetectionUnit.AddDetector(1, 3);
-            CollisionDetectionUnit.AddDetector(2, 3);
+            // CollisionDetectionUnit.AddDetector(1, 3);
+            // CollisionDetectionUnit.AddDetector(2, 3);
             mainMenuState = new MainMenuState(ScreenSize, ExitNotifier);
             var actor = mainMenuState;
             CrossHair crossHair = new CrossHair(ScreenSize / 2);
@@ -49,8 +49,8 @@ namespace ProjectGameCP215
 
         protected override void AfterUpdateAndCollision()
         {
-            if (cameraMan != null)
-                cameraMan.AdjustCamera();  // อัปเดตการปรับมุมกล้อง
+            // if (cameraMan != null)
+            //     cameraMan.AdjustCamera();  // อัปเดตการปรับมุมกล้อง
         }
 
 

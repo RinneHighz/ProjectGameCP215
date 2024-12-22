@@ -28,7 +28,7 @@ namespace ProjectGameCP215
                 timePassed = 0;
                 duration = RandomUtil.NextSingle() * 4 + 0.5f; // สุ่มระยะเวลาใหม่ทุกครั้ง
 
-                speed = 2; // ความเร็วของ Slime
+                speed = 100; // ความเร็วของ Slime
                 Vector2 direction;
                 float distance = Vector2.Distance(actor.Position, target.Position);
 

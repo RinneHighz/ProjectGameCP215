@@ -12,14 +12,21 @@ namespace ProjectGameCP215
         public int score { get; set; } = 0; // เพิ่มตัวแปรเก็บคะแนน
         public float maxHp { get; set; } = 100; // เลือดสูงสุด
         public float hp { get; set; }    // เลือดปัจจุบัน
+        public int level { get; set; } = 1; // เลเวลเริ่มต้น
+        public int exp { get; set; } = 0; // ค่าประสบการณ์ปัจจุบัน
+        public int expToNextLevel { get; set; } = 10; // ค่าประสบการณ์ที่ต้องการเพื่อเลเวลอัพ
+        public int damage { get; set; } = 10; // ดาเมจเริ่มต้น
 
-        public MaleActor(Vector2 position)
+        PlayState playState;
+
+        public MaleActor(Vector2 position, PlayState playState)
         {
+            this.playState = playState;
             hp = maxHp;
             var size = new Vector2(32, 48);
             Position = position;
             Origin = new Vector2(16, 40);
-            Scale = new Vector2(2, 2);
+            Scale = new Vector2(1, 1);
 
             var texture = TextureCache.Get("Content/Resource/SpriteSheet/MaleActor.png");
             var regions2d = RegionCutter.Cut(texture, size);
@@ -76,9 +83,28 @@ namespace ProjectGameCP215
             else
                 states.Animate(0);  // อยู่กับที่
 
-            // อัปเดตตำแหน่ง
-            Position += V * deltaTime;
+            // คำนวณตำแหน่งใหม่
+            Vector2 newPosition = Position + V * deltaTime;
 
+            // ตรวจสอบขอบหน้าจอ
+            var screenBounds = new Rectangle(0, 0, 1920, 1080); // แทนที่ด้วยขนาดหน้าจอของเกม
+            var actorBounds = new Rectangle(
+                (int)(newPosition.X - Origin.X * Scale.X),
+                (int)(newPosition.Y - Origin.Y * Scale.Y),
+                (int)(RawSize.X * Scale.X),
+                (int)(RawSize.Y * Scale.Y)
+            );
+
+            if (screenBounds.Contains(actorBounds))
+            {
+                // หากตำแหน่งใหม่อยู่ในขอบเขตหน้าจอ ให้ปรับตำแหน่ง
+                Position = newPosition;
+            }
+            else
+            {
+                // หากตำแหน่งใหม่ออกนอกขอบเขตหน้าจอ ให้ปรับความเร็วเป็น 0
+                V = Vector2.Zero;
+            }
         }
 
         public void OnCollide(CollisionObj objB, CollideData data)
@@ -101,14 +127,12 @@ namespace ProjectGameCP215
             var slime = objB.Actor as Slime;
             var boss = objB.Actor as Boss;
 
-            if (boss != null ){
-                if(boss.hp - 10 >= 0){
-                    boss.hp -= 10;
-                }else{
-                    boss.Detach();
-                }
+            if (boss != null)
+            {
 
-                if (hp - 10 <= 0)
+                boss.Detach();
+
+                if (hp - 20 <= 0)
                 {
                     hp = 0;
                 }
@@ -132,6 +156,18 @@ namespace ProjectGameCP215
                 {
                     hp -= 10;
                 }
+            }
+        }
+
+
+        public void CheckLevelUp()
+        {
+            if (exp >= expToNextLevel)
+            {
+                exp -= expToNextLevel;
+                level++;
+                expToNextLevel += 2*level; // เพิ่มความยากของเลเวลอัพ
+                playState.ShowUpgradeOptions(); // เรียก UI เลเวลอัพจาก PlayState
             }
         }
 

@@ -23,7 +23,7 @@ namespace ProjectGameCP215
             var size = new Vector2(18, 18);
             Position = position;
             Origin = size / 2;
-            Scale = new Vector2(4, 4);
+            Scale = new Vector2(2, 2);
 
             var texture = TextureCache.Get("Content/Resource/SpriteSheet/Slime.png");
             var regions2d = RegionCutter.Cut(texture, size);
@@ -58,25 +58,6 @@ namespace ProjectGameCP215
             // อัปเดตตำแหน่ง
             Position += V * deltaTime;
 
-        }
-
-        int last = 1;
-        public void Animate(int index)
-        {
-            PlayOnly(index);
-            if (index != last)
-            {
-                animationArray[index].Restart();
-                last = index;
-            }
-        }
-
-        private void PlayOnly(int playIndex)
-        {
-            for (int i = 0; i < animationArray.Length; i++)
-            {
-                animationArray[i].Running = (i == playIndex);
-            }
         }
 
         public void OnCollide(CollisionObj objB, CollideData data)

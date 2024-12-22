@@ -23,13 +23,26 @@ namespace ProjectGameCP215
         }
         public void OnCollide(CollisionObj objB, CollideData collideData)
         {
-            var enemy = objB.Actor as Slime;
-            if (enemy != null)
+            var slime = objB.Actor as Slime;
+            if (slime != null)
             {
-                enemy.Detach(); // ลบ Slime ออกจากเกม
+                slime.Detach(); // ลบ Slime ออกจากเกม
                 this.Detach();  // ลบ Ball หลังจากชน
 
-                player.score += 10; // เพิ่มคะแนนให้ MaleActor
+                player.score += 1; // เพิ่มคะแนนให้ MaleActor
+            }
+
+            var boss = objB.Actor as Boss;
+            if (boss != null)
+            {
+                if(boss.hp - 10 >= 0){
+                    boss.hp -= 10;
+                }else{
+                    boss.Detach();
+                    player.score += 10;
+                }
+                this.Detach();  // ลบ Ball หลังจากชน
+
             }
         }
     }

@@ -99,6 +99,25 @@ namespace ProjectGameCP215
             }
 
             var slime = objB.Actor as Slime;
+            var boss = objB.Actor as Boss;
+
+            if (boss != null ){
+                if(boss.hp - 10 >= 0){
+                    boss.hp -= 10;
+                }else{
+                    boss.Detach();
+                }
+
+                if (hp - 10 <= 0)
+                {
+                    hp = 0;
+                }
+                else
+                {
+                    hp -= 20;
+                }
+            }
+
             if (slime != null)
             {
                 // ลบ Slime ออกจากเกม

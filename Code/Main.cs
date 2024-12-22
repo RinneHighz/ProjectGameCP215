@@ -30,14 +30,6 @@ namespace ProjectGameCP215
             var backgroundimg = new SpriteActor(texture1);
             All.Add(backgroundimg);
 
-
-
-
-
-
-
-
-
             // pausePlaceholder.Enable = false; // เริ่มต้นปิด PauseState
 
 

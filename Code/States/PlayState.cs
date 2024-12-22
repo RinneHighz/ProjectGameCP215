@@ -54,9 +54,9 @@ namespace ProjectGameCP215
 
             Actor visual = new Actor();
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 4; i++)
             {
-                enermy.Add(new Slime(RandomUtil.Position(screenSize)));
+                enermy.Add(new Boss(RandomUtil.Position(screenSize)));
             }
 
             uiLayer.Add(hpBar);
@@ -99,6 +99,7 @@ namespace ProjectGameCP215
 
             visual.Add(maleActor);
             visual.Add(enermy);
+            
             Add(visual);
             Add(uiLayer);
 

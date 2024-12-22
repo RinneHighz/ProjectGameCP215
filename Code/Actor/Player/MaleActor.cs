@@ -19,7 +19,7 @@ namespace ProjectGameCP215
             var size = new Vector2(32, 48);
             Position = position;
             Origin = new Vector2(16, 40);
-            Scale = new Vector2(1, 1);
+            Scale = new Vector2(2, 2);
 
             var texture = TextureCache.Get("Content/Resource/SpriteSheet/MaleActor.png");
             var regions2d = RegionCutter.Cut(texture, size);
@@ -99,15 +99,20 @@ namespace ProjectGameCP215
             }
 
             var slime = objB.Actor as Slime;
-            slime?.Detach();
+            if (slime != null)
+            {
+                // ลบ Slime ออกจากเกม
+                slime.Detach();
 
-            if (hp - 10 <= 0)
-            {
-                hp = 0;
-            }
-            else
-            {
-                hp -= 10;
+                // ลด HP
+                if (hp - 10 <= 0)
+                {
+                    hp = 0;
+                }
+                else
+                {
+                    hp -= 10;
+                }
             }
         }
 

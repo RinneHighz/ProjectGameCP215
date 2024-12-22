@@ -42,6 +42,8 @@ namespace ProjectGameCP215
 
 
             CollisionDetectionUnit.AddDetector(1, 2);
+            CollisionDetectionUnit.AddDetector(1, 3);
+            CollisionDetectionUnit.AddDetector(2, 3);
             mainMenuState = new MainMenuState(ScreenSize, ExitNotifier);
             var actor = mainMenuState;
             CrossHair crossHair = new CrossHair(ScreenSize / 2);

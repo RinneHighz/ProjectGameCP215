@@ -50,7 +50,7 @@ namespace ProjectGameCP215
             // button1.ButtonClicked += Button1_ButtonClicked;
 
             // Add(button1);
-            // Add(gameOverText);
+            Add(gameOverText);
 
             //ImageButton 
             var menu_button = new TextureRegion(TextureCache.Get("Menu_ImageButton.png"),new RectF(0,0,300,100));

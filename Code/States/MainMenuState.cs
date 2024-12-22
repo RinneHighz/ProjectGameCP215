@@ -21,8 +21,8 @@ namespace ProjectGameCP215
 
             backgroundMusic = Song.FromUri("Song01",
                       new Uri("Content/Resource/Sound/MainMenuBGM.ogg", UriKind.Relative));
-            MediaPlayer.Play(backgroundMusic);
-            MediaPlayer.Volume = 4;
+            // MediaPlayer.Play(backgroundMusic);
+            // MediaPlayer.Volume = 4;
 
 
             //ImageButton 

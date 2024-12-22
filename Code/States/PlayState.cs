@@ -38,7 +38,7 @@ namespace ProjectGameCP215
             backgroundMusic = Song.FromUri("Song01",
                       new Uri("Content/Resource/Sound/PlayStateBGM.ogg", UriKind.Relative));
 
-            MediaPlayer.Play(backgroundMusic);
+            // MediaPlayer.Play(backgroundMusic);
             previousMaleActorPosition = maleActor.Position;
 
             hpBar = new ProgressBar(new Vector2(200, 20), max: maleActor.maxHp, Color.Black, Color.Green)

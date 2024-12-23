@@ -9,8 +9,12 @@ namespace ProjectGameCP215
     {
         CameraMan cameraMan;
         PlayState playState;
+        PauseState pauseState; // เพิ่มตัวแปรนี้
+
         MainMenuState mainMenuState;
         GameOverState gameOverState;
+                private bool isPaused = false; // ตรวจสอบสถานะ paused
+
 
 
 
@@ -27,7 +31,7 @@ namespace ProjectGameCP215
         {
             BackgroundColor = Color.White;
             //background in game
-        
+
 
 
             // pausePlaceholder.Enable = false; // เริ่มต้นปิด PauseState
@@ -43,8 +47,8 @@ namespace ProjectGameCP215
             All.Add(mainMenuState);
             All.Add(crossHair);
 
-           
-           
+
+
 
 
 
@@ -65,7 +69,39 @@ namespace ProjectGameCP215
         protected override void Update(GameTime gameTime)
         {
             base.Update(gameTime);
+
+                        var keyInfo = GlobalKeyboardInfo.Value;
+
+            if (keyInfo.IsKeyPressed(Keys.P)) // เมื่อกด P
+            {
+                if (isPaused)
+                {
+                    // Resume PlayState
+                    if (pauseState != null)
+                    {
+                        pauseState.Detach();
+                        pauseState = null;
+                    }
+                    if (playState != null)
+                    {
+                        All.Add(playState);
+                    }
+                    isPaused = false;
+                }
+                else
+                {
+                    // Pause PlayState
+                    if (playState != null)
+                    {
+                        playState.Detach();
+                    }
+                    pauseState = new PauseState(ScreenSize);
+                    All.Add(pauseState);
+                    isPaused = true;
+                }
+            }
         }
+        
 
         private void ExitNotifier(Actor actor, int code)
         {

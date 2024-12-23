@@ -31,7 +31,7 @@ public class Boss : SpriteActor
 
         var collisionObj = CollisionObj.CreateWithRect(this, 2);
         collisionObj.OnCollide = OnCollide;
-        collisionObj.DebugDraw = true;
+        // collisionObj.DebugDraw = true;
         Add(collisionObj);
     }
 

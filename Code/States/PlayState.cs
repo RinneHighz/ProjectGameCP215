@@ -20,7 +20,7 @@ namespace ProjectGameCP215
         MaleActor maleActor;
         ProgressBar hpBar;
         Label scoreLabel, levelLabel, damageLabel, maxHpLabel;
-        
+
         Vector2 previousMaleActorPosition;
         TextureRegion[] tiles;
         TileMap TileMap;
@@ -48,7 +48,9 @@ namespace ProjectGameCP215
             backgroundMusic = Song.FromUri("Song01",
                       new Uri("Content/Resource/Sound/PlayStateBGM.ogg", UriKind.Relative));
 
-            // MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.Volume = 4;
+
             previousMaleActorPosition = maleActor.Position;
 
             hpBar = new ProgressBar(new Vector2(200, 20), max: maleActor.maxHp, Color.Black, Color.Green)
@@ -57,7 +59,7 @@ namespace ProjectGameCP215
                 Value = maleActor.hp
             };
 
-          
+
             damageLabel = new Label("Content/Resource/Font/Roboto-Regular.ttf", 50, Color.Black, "Damage: " + maleActor.damage)
             {
                 Position = new Vector2(50, 200)
@@ -152,12 +154,13 @@ namespace ProjectGameCP215
 
             {
                 duration += deltaTime;
-                if(duration > 0.1f){
+                if (duration > 0.1f)
+                {
                     enermy.GetChild(i).ClearAction();
-                enermy.GetChild(i).AddAction(new RandomMover(enermy.GetChild(i), maleActor));
-                // duration = 0;
+                    enermy.GetChild(i).AddAction(new RandomMover(enermy.GetChild(i), maleActor));
+                    // duration = 0;
                 }
-                
+
             }
 
             hpBar.Value = maleActor.hp;
@@ -185,18 +188,18 @@ namespace ProjectGameCP215
         //     imgbutton.Position = new Vector2(800, 700);
         //     imgbutton.ButtonClicked += Button1_ButtonClicked;
         //     Add(imgbutton);
-        
+
 
         public void ShowUpgradeOptions()
         {
             // สร้างตัวเลือกเลเวลอัพ
             var upgradeMenu = new Actor();
 
-            
+
 
             var option1 = new Button("Content/Resource/Font/Roboto-Regular.ttf", 50,
                Color.Black, "Increase Damage", new Vector2(500, 100));
-            
+
             option1.ButtonClicked += (btn) =>
             {
                 maleActor.damage += 5;
@@ -205,7 +208,7 @@ namespace ProjectGameCP215
 
             var option2 = new Button("Content/Resource/Font/Roboto-Regular.ttf", 50,
                 Color.Black, "Increase Max Hp", new Vector2(500, 100));
-              
+
             option2.ButtonClicked += (btn) =>
             {
                 maleActor.maxHp += 20;
@@ -214,8 +217,8 @@ namespace ProjectGameCP215
             };
 
             // ตำแหน่งของปุ่ม
-            option1.Position = new Vector2(screenSize.X / 2 - option1.RawSize.X/2, screenSize.Y / 2 - 50);
-            option2.Position = new Vector2(screenSize.X / 2 - option2.RawSize.X/2, screenSize.Y / 2 + 100);
+            option1.Position = new Vector2(screenSize.X / 2 - option1.RawSize.X / 2, screenSize.Y / 2 - 50);
+            option2.Position = new Vector2(screenSize.X / 2 - option2.RawSize.X / 2, screenSize.Y / 2 + 100);
 
             upgradeMenu.Add(option1);
             upgradeMenu.Add(option2);

@@ -45,7 +45,7 @@ namespace ProjectGameCP215
             CrossHair crossHair = new CrossHair(ScreenSize / 2);
 
             All.Add(mainMenuState);
-            All.Add(crossHair);
+            // All.Add(crossHair);
 
 
 

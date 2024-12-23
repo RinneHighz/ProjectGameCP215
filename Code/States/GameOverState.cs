@@ -26,15 +26,17 @@ namespace ProjectGameCP215
             Add(backgroundimg);
 
             var StatPanel = new StatPanel();
-            StatPanel.Position = screenSize/2 - new Vector2(400,100);
+            StatPanel.Position = screenSize / 2 - new Vector2(400, 100);
             Add(StatPanel);
 
-            
+
 
             backgroundMusic = Song.FromUri("Song01",
                       new Uri("Content/Resource/Sound/DeathSound.ogg", UriKind.Relative));
 
             MediaPlayer.Play(backgroundMusic);
+            MediaPlayer.Volume = 4;
+
 
             // บันทึกคะแนนหากไม่ใช่ 0
             if (finalScore > 0)
@@ -50,7 +52,7 @@ namespace ProjectGameCP215
 
             string topScoresText = string.Join(", ", topScores.Select(score => score.ToString()));
 
-            gameOverText = new Text("Content/Resource/Font/Roboto-Regular.ttf", 50, Color.Black, 
+            gameOverText = new Text("Content/Resource/Font/Roboto-Regular.ttf", 50, Color.Black,
                 $"Game Over\nYour Score: {finalScore}\nTop 5 Scores: {topScoresText}")
             {
             };
@@ -64,9 +66,9 @@ namespace ProjectGameCP215
             StatPanel.Add(gameOverText);
 
             //ImageButton 
-            var menu_button = new TextureRegion(TextureCache.Get("Menu_ImageButton.png"),new RectF(0,0,300,100));
+            var menu_button = new TextureRegion(TextureCache.Get("Menu_ImageButton.png"), new RectF(0, 0, 300, 100));
             var imgbutton = new ImageButton(menu_button);
-            imgbutton.Position = new Vector2(1920/2 - 300/2,700);
+            imgbutton.Position = new Vector2(1920 / 2 - 300 / 2, 700);
             imgbutton.ButtonClicked += Button1_ButtonClicked;
             Add(imgbutton);
         }

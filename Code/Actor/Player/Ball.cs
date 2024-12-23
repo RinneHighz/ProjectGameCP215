@@ -13,9 +13,20 @@ namespace ProjectGameCP215
         public Ball(Vector2 v, MaleActor player)
         {
             this.player = player;
-            SetTexture(TextureCache.Get("Content/Resource/SpriteSheet/Ball.png"));
-            Origin = RawSize / 2;
-            Scale = new Vector2(0.5f, 0.5f);
+            // SetTexture(TextureCache.Get("Content/Resource/SpriteSheet/Ball.png"));
+            // Origin = RawSize / 2;
+            // Scale = new Vector2(0.5f, 0.5f);
+
+            var size = new Vector2(16, 16);
+            Origin = size / 2;
+            Scale = new Vector2(2, 2);
+
+            var texture = TextureCache.Get("Content/Resource/SpriteSheet/Bullet.png");
+            var regions2d = RegionCutter.Cut(texture, size);
+            var selector = new RegionSelector(regions2d);
+            var stay = new Animation(this, 1.0f, selector.Select1by1(0, 4));
+
+            AddAction(stay);
 
             AddAction(Mover = new Mover(this, v));
             var collisionObj = CollisionObj.CreateWithRect(this, 1);

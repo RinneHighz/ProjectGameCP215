@@ -36,7 +36,7 @@ namespace ProjectGameCP215
             // AddAction(new RandomMover(this));
             var collisionObj = CollisionObj.CreateWithRect(this, 2);
             collisionObj.OnCollide = OnCollide;
-            collisionObj.DebugDraw = true;
+            // collisionObj.DebugDraw = true;
             Add(collisionObj);
         }
         public override void Act(float deltaTime)

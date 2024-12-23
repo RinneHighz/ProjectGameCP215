@@ -43,7 +43,7 @@ namespace ProjectGameCP215
 
             var collisionObj = CollisionObj.CreateWithRect(this, 1);
             collisionObj.OnCollide = OnCollide;
-            collisionObj.DebugDraw = true;
+            //collisionObj.DebugDraw = true;
             Add(collisionObj);
 
 

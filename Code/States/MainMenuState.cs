@@ -20,7 +20,7 @@ namespace ProjectGameCP215
             this.exitNotifier = exitNotifier;
 
 
-            var texture1 = TextureCache.Get("BG.png");
+            var texture1 = TextureCache.Get("backgroundimg.png");
             var backgroundimg = new SpriteActor(texture1);
             Add(backgroundimg);
 
@@ -32,9 +32,9 @@ namespace ProjectGameCP215
 
 
             //ImageButton 
-            var start_button = new TextureRegion(TextureCache.Get("Start_ImageButton.png"), new RectF(0, 0, 300, 100));
+            var start_button = new TextureRegion(TextureCache.Get("btn_start.png"), new RectF(0, 0, 300, 100));
             var imgbutton = new ImageButton(start_button);
-            imgbutton.Position = new Vector2(210, 500);
+            imgbutton.Position = new Vector2(800, 700);
             imgbutton.ButtonClicked += Button1_ButtonClicked;
             Add(imgbutton);
         }

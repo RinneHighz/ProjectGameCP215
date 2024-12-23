@@ -43,6 +43,12 @@ namespace ProjectGameCP215
             All.Add(mainMenuState);
             All.Add(crossHair);
 
+           
+           
+
+
+
+
             base.LoadContent();
         }
 

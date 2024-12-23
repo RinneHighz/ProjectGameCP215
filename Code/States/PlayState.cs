@@ -29,6 +29,7 @@ namespace ProjectGameCP215
         Vector2 screenSize;
 
         private float elapsedTime = 0f; // เก็บเวลาที่ผ่านไปทั้งหมด
+        private float duration = 0f; //
         private float spawnInterval = 5f; // ระยะเวลาที่จะเกิดศัตรูใหม่
         private int slimeCount = 1; // จำนวน Slime ที่จะเกิดในแต่ละครั้ง
         private int bossCount = 2; // จำนวน Boss ที่จะเกิดในแต่ละครั้ง
@@ -57,18 +58,18 @@ namespace ProjectGameCP215
             };
 
           
-            damageLabel = new Label("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50, Color.Brown, "Damage: " + maleActor.damage)
+            damageLabel = new Label("Content/Resource/Font/Roboto-Regular.ttf", 50, Color.Black, "Damage: " + maleActor.damage)
             {
                 Position = new Vector2(50, 200)
             };
-            maxHpLabel = new Label("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50, Color.Brown, "Max HP: " + maleActor.maxHp)
+            maxHpLabel = new Label("Content/Resource/Font/Roboto-Regular.ttf", 50, Color.Black, "Max HP: " + maleActor.maxHp)
             {
                 Position = new Vector2(50, 250)
             };
 
 
 
-            scoreLabel = new Label("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50, Color.Brown, "Score: 0")
+            scoreLabel = new Label("Content/Resource/Font/Roboto-Regular.ttf", 50, Color.Black, "Score: 0")
             {
                 Position = new Vector2(50, 100)
             };
@@ -94,7 +95,7 @@ namespace ProjectGameCP215
 
             collisionDetectionUnit.AddDetector(1, 3);
 
-            levelLabel = new Label("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50, Color.Brown, "Level: 1")
+            levelLabel = new Label("Content/Resource/Font/Roboto-Regular.ttf", 50, Color.Black, "Level: 1")
             {
                 Position = new Vector2(50, 150)
             };
@@ -148,9 +149,15 @@ namespace ProjectGameCP215
             }
 
             for (int i = 0; i < enermy.ChildCount; i++)
+
             {
-                enermy.GetChild(i).ClearAction();
+                duration += deltaTime;
+                if(duration > 0.1f){
+                    enermy.GetChild(i).ClearAction();
                 enermy.GetChild(i).AddAction(new RandomMover(enermy.GetChild(i), maleActor));
+                // duration = 0;
+                }
+                
             }
 
             hpBar.Value = maleActor.hp;
@@ -173,21 +180,32 @@ namespace ProjectGameCP215
             return maleActor.score;
         }
 
+        // var start_button = new TextureRegion(TextureCache.Get("btn_start.png"), new RectF(0, 0, 300, 100));
+        //     var imgbutton = new ImageButton(start_button);
+        //     imgbutton.Position = new Vector2(800, 700);
+        //     imgbutton.ButtonClicked += Button1_ButtonClicked;
+        //     Add(imgbutton);
+        
+
         public void ShowUpgradeOptions()
         {
             // สร้างตัวเลือกเลเวลอัพ
             var upgradeMenu = new Actor();
 
-            var option1 = new Button("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50,
-                Color.Brown, "Increase Damage", new Vector2(300, 100));
+            
+
+            var option1 = new Button("Content/Resource/Font/Roboto-Regular.ttf", 50,
+               Color.Black, "Increase Damage", new Vector2(500, 100));
+            
             option1.ButtonClicked += (btn) =>
             {
                 maleActor.damage += 5;
                 upgradeMenu.Detach(); // เอาเมนูออก
             };
 
-            var option2 = new Button("Content/Resource/Font/JacquesFrancoisShadow-Regular.ttf", 50,
-                Color.Brown, "Increase Max Hp", new Vector2(300, 100));
+            var option2 = new Button("Content/Resource/Font/Roboto-Regular.ttf", 50,
+                Color.Black, "Increase Max Hp", new Vector2(500, 100));
+              
             option2.ButtonClicked += (btn) =>
             {
                 maleActor.maxHp += 20;
@@ -196,8 +214,8 @@ namespace ProjectGameCP215
             };
 
             // ตำแหน่งของปุ่ม
-            option1.Position = new Vector2(screenSize.X / 2 - 100, screenSize.Y / 2 - 50);
-            option2.Position = new Vector2(screenSize.X / 2 - 100, screenSize.Y / 2 + 50);
+            option1.Position = new Vector2(screenSize.X / 2 - option1.RawSize.X/2, screenSize.Y / 2 - 50);
+            option2.Position = new Vector2(screenSize.X / 2 - option2.RawSize.X/2, screenSize.Y / 2 + 100);
 
             upgradeMenu.Add(option1);
             upgradeMenu.Add(option2);

@@ -26,7 +26,7 @@ namespace ProjectGameCP215
             var size = new Vector2(32, 48);
             Position = position;
             Origin = new Vector2(16, 40);
-            Scale = new Vector2(1, 1);
+            Scale = new Vector2(1.5f, 1.5f);
 
             var texture = TextureCache.Get("Content/Resource/SpriteSheet/MaleActor.png");
             var regions2d = RegionCutter.Cut(texture, size);

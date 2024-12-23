@@ -20,7 +20,7 @@ namespace ProjectGameCP215
             this.exitNotifier = exitNotifier;
 
 
-            var texture1 = TextureCache.Get("backgroundimg.png");
+            var texture1 = TextureCache.Get("Content/backgroundimg.png");
             var backgroundimg = new SpriteActor(texture1);
             Add(backgroundimg);
 

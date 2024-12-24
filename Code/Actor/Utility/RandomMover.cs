@@ -32,21 +32,15 @@ namespace ProjectGameCP215
                 Vector2 direction;
                 float distance = Vector2.Distance(actor.Position, target.Position);
 
-                if (distance < 100) // ระยะที่กำหนดว่าใกล้เกินไป
-                {
-                    // กำหนดทิศทางแบบสุ่มเมื่อเข้าใกล้เป้าหมายเกินไป
-                    direction = RandomUtil.Direction();
-                }
-                else
-                {
-                    // เดินเข้าหาเป้าหมายตามปกติ
-                    direction = target.Position - actor.Position;
 
-                    if (direction.LengthSquared() > 0)
-                    {
-                        direction.Normalize();
-                    }
+                // เดินเข้าหาเป้าหมายตามปกติ
+                direction = target.Position - actor.Position;
+
+                if (direction.LengthSquared() > 0)
+                {
+                    direction.Normalize();
                 }
+
 
                 Velocity = speed * direction; // ตั้งค่าความเร็ว
             }

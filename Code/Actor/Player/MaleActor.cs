@@ -18,10 +18,13 @@ namespace ProjectGameCP215
         public int damage { get; set; } = 10; // ดาเมจเริ่มต้น
 
         PlayState playState;
+        ExitNotifier exitNotifier;
 
-        public MaleActor(Vector2 position, PlayState playState)
+        public MaleActor(Vector2 position, PlayState playState, ExitNotifier exitNotifier)
         {
             this.playState = playState;
+            this.exitNotifier = exitNotifier;
+
             hp = maxHp;
             var size = new Vector2(32, 48);
             Position = position;
@@ -167,7 +170,10 @@ namespace ProjectGameCP215
                 exp -= expToNextLevel;
                 level++;
                 expToNextLevel += 2*level; // เพิ่มความยากของเลเวลอัพ
-                playState.ShowUpgradeOptions(); // เรียก UI เลเวลอัพจาก PlayState
+                exitNotifier(playState, 2);
+                // LevelUpState levelUpState = new LevelUpState(new Vector2(1920, 1080), this, exitNotifier);
+                // playState.Add(levelUpState);
+                // playState.ShowUpgradeOptions(); // เรียก UI เลเวลอัพจาก PlayState
             }
         }
 

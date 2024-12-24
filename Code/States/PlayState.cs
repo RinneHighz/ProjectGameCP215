@@ -17,9 +17,9 @@ namespace ProjectGameCP215
         Actor all;
         Actor enermy = new Actor();
         Actor uiLayer = new Actor();
-        MaleActor maleActor;
+        public MaleActor maleActor;
         ProgressBar hpBar;
-        Label scoreLabel, levelLabel, damageLabel, maxHpLabel;
+        Label scoreLabel, levelLabel, damageLabel, maxHpLabel, expLabel;
 
         Vector2 previousMaleActorPosition;
         TextureRegion[] tiles;
@@ -34,6 +34,8 @@ namespace ProjectGameCP215
         private int slimeCount = 1; // จำนวน Slime ที่จะเกิดในแต่ละครั้ง
         private int bossCount = 2; // จำนวน Boss ที่จะเกิดในแต่ละครั้ง
         private Random random = new Random(); // สำหรับสุ่มตำแหน่ง
+        public bool isLevelUp { get; set; } = false; // ตัวแปรตรวจสอบสถานะ LevelUp
+
 
         public PlayState(CameraMan cameraMan, Vector2 screenSize, ExitNotifier exitNotifier, Actor all, CollisionDetection CollisionDetection)
         {
@@ -42,7 +44,7 @@ namespace ProjectGameCP215
             this.collisionDetectionUnit = CollisionDetection;
             this.screenSize = screenSize;
 
-            maleActor = new MaleActor(new Vector2(screenSize.X / 2 - 100, screenSize.Y / 2), this);
+            maleActor = new MaleActor(new Vector2(screenSize.X / 2 - 100, screenSize.Y / 2), this, exitNotifier);
             // maleActor.Add(cameraMan);
 
             backgroundMusic = Song.FromUri("Song01",
@@ -60,18 +62,22 @@ namespace ProjectGameCP215
             };
 
 
-            damageLabel = new Label("Content/Resource/Font/Roboto-Regular.ttf", 50, Color.Black, "Damage: " + maleActor.damage)
+            damageLabel = new Label("Content/Resource/Font/PixelFont.ttf", 50, Color.Black, "Damage: " + maleActor.damage)
             {
                 Position = new Vector2(50, 200)
             };
-            maxHpLabel = new Label("Content/Resource/Font/Roboto-Regular.ttf", 50, Color.Black, "Max HP: " + maleActor.maxHp)
+            maxHpLabel = new Label("Content/Resource/Font/PixelFont.ttf", 50, Color.Black, "Max HP: " + maleActor.maxHp)
             {
                 Position = new Vector2(50, 250)
+            };
+            expLabel = new Label("Content/Resource/Font/PixelFont.ttf", 50, Color.Black, "Exp: " + maleActor.exp +"/"+ maleActor.expToNextLevel)
+            {
+                Position = new Vector2(50, 300)
             };
 
 
 
-            scoreLabel = new Label("Content/Resource/Font/Roboto-Regular.ttf", 50, Color.Black, "Score: 0")
+            scoreLabel = new Label("Content/Resource/Font/PixelFont.ttf", 50, Color.Black, "Score: 0")
             {
                 Position = new Vector2(50, 100)
             };
@@ -97,7 +103,7 @@ namespace ProjectGameCP215
 
             collisionDetectionUnit.AddDetector(1, 3);
 
-            levelLabel = new Label("Content/Resource/Font/Roboto-Regular.ttf", 50, Color.Black, "Level: 1")
+            levelLabel = new Label("Content/Resource/Font/PixelFont.ttf", 50, Color.Black, "Level: 1")
             {
                 Position = new Vector2(50, 150)
             };
@@ -109,6 +115,7 @@ namespace ProjectGameCP215
 
             uiLayer.Add(damageLabel);
             uiLayer.Add(maxHpLabel);
+            uiLayer.Add(expLabel);
 
 
 
@@ -169,6 +176,7 @@ namespace ProjectGameCP215
             levelLabel.Text = "Level: " + maleActor.level;
             damageLabel.Text = "Damage: " + maleActor.damage;
             maxHpLabel.Text = "Max HP: " + maleActor.maxHp;
+            expLabel.Text = "Exp: " + maleActor.exp + "/" + maleActor.expToNextLevel;
 
 
             if (hpBar.Value <= 0)
@@ -190,40 +198,40 @@ namespace ProjectGameCP215
         //     Add(imgbutton);
 
 
-        public void ShowUpgradeOptions()
-        {
-            // สร้างตัวเลือกเลเวลอัพ
-            var upgradeMenu = new Actor();
+        // public void ShowUpgradeOptions()
+        // {
+        //     // สร้างตัวเลือกเลเวลอัพ
+        //     var upgradeMenu = new Actor();
 
 
 
-            var option1 = new Button("Content/Resource/Font/Roboto-Regular.ttf", 50,
-               Color.Black, "Increase Damage", new Vector2(500, 100));
+        //     var option1 = new Button("Content/Resource/Font/PixelFont.ttf", 50,
+        //        Color.Black, "Increase Damage", new Vector2(500, 100));
 
-            option1.ButtonClicked += (btn) =>
-            {
-                maleActor.damage += 5;
-                upgradeMenu.Detach(); // เอาเมนูออก
-            };
+        //     option1.ButtonClicked += (btn) =>
+        //     {
+        //         maleActor.damage += 5;
+        //         upgradeMenu.Detach(); // เอาเมนูออก
+        //     };
 
-            var option2 = new Button("Content/Resource/Font/Roboto-Regular.ttf", 50,
-                Color.Black, "Increase Max Hp", new Vector2(500, 100));
+        //     var option2 = new Button("Content/Resource/Font/PixelFont.ttf", 50,
+        //         Color.Black, "Increase Max Hp", new Vector2(500, 100));
 
-            option2.ButtonClicked += (btn) =>
-            {
-                maleActor.maxHp += 20;
-                maleActor.hp = maleActor.maxHp;
-                upgradeMenu.Detach(); // เอาเมนูออก
-            };
+        //     option2.ButtonClicked += (btn) =>
+        //     {
+        //         maleActor.maxHp += 20;
+        //         maleActor.hp = maleActor.maxHp;
+        //         upgradeMenu.Detach(); // เอาเมนูออก
+        //     };
 
-            // ตำแหน่งของปุ่ม
-            option1.Position = new Vector2(screenSize.X / 2 - option1.RawSize.X / 2, screenSize.Y / 2 - 50);
-            option2.Position = new Vector2(screenSize.X / 2 - option2.RawSize.X / 2, screenSize.Y / 2 + 100);
+        //     // ตำแหน่งของปุ่ม
+        //     option1.Position = new Vector2(screenSize.X / 2 - option1.RawSize.X / 2, screenSize.Y / 2 - 50);
+        //     option2.Position = new Vector2(screenSize.X / 2 - option2.RawSize.X / 2, screenSize.Y / 2 + 100);
 
-            upgradeMenu.Add(option1);
-            upgradeMenu.Add(option2);
-            Add(upgradeMenu); // เพิ่มเมนูใน PlayState
-        }
+        //     upgradeMenu.Add(option1);
+        //     upgradeMenu.Add(option2);
+        //     Add(upgradeMenu); // เพิ่มเมนูใน PlayState
+        // }
 
 
         private void SpawnEnemies()

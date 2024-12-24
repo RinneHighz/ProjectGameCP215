@@ -33,7 +33,7 @@ namespace ProjectGameCP215
 
         private Text CreateLabel(string s)
         {
-            return new Text("Content/Resource/Font/Roboto-Regular.ttf",25,Color.Black,s);
+            return new Text("Content/Resource/Font/PixelFont.ttf",25,Color.Black,s);
         }
        
     }

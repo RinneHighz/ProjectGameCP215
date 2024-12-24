@@ -13,7 +13,7 @@ namespace ProjectGameCP215
             Add(background);
 
             // เพิ่มข้อความ Pause
-            var pauseText = new Text("Content/Resource/Font/Roboto-Regular.ttf", 100, Color.White, "PAUSED");
+            var pauseText = new Text("Content/Resource/Font/PixelFont.ttf", 100, Color.White, "PAUSED");
             pauseText.Position = screenSize / 2 - new Vector2(pauseText.RawSize.X / 2, pauseText.RawSize.Y / 2);
             Add(pauseText);
         }

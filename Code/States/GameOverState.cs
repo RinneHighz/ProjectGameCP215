@@ -52,7 +52,7 @@ namespace ProjectGameCP215
 
             string topScoresText = string.Join(", ", topScores.Select(score => score.ToString()));
 
-            gameOverText = new Text("Content/Resource/Font/Roboto-Regular.ttf", 50, Color.Black,
+            gameOverText = new Text("Content/Resource/Font/PixelFont.ttf", 50, Color.Black,
                 $"Game Over\nYour Score: {finalScore}\nTop 5 Scores: {topScoresText}")
             {
             };

@@ -13,7 +13,8 @@ namespace ProjectGameCP215
 
         MainMenuState mainMenuState;
         GameOverState gameOverState;
-                private bool isPaused = false; // ตรวจสอบสถานะ paused
+        LevelUpState levelUpState;
+        private bool isPaused = false; // ตรวจสอบสถานะ paused
 
 
 
@@ -70,7 +71,7 @@ namespace ProjectGameCP215
         {
             base.Update(gameTime);
 
-                        var keyInfo = GlobalKeyboardInfo.Value;
+            var keyInfo = GlobalKeyboardInfo.Value;
 
             if (keyInfo.IsKeyPressed(Keys.P)) // เมื่อกด P
             {
@@ -101,7 +102,7 @@ namespace ProjectGameCP215
                 }
             }
         }
-        
+
 
         private void ExitNotifier(Actor actor, int code)
         {
@@ -152,6 +153,20 @@ namespace ProjectGameCP215
                 mainMenuState = new MainMenuState(ScreenSize, ExitNotifier);
                 mainMenuState.Add(cameraMan);
                 All.Add(mainMenuState);
+            }
+
+            else if(actor == playState && code == 2){
+                playState.Detach();
+                levelUpState = new LevelUpState(ScreenSize, playState.maleActor, ExitNotifier, playState);
+                cameraMan = new CameraMan(Camera, new Vector2(0, 0));
+                levelUpState.Add(cameraMan);
+                All.Add(levelUpState);
+            }
+            else if(actor == levelUpState && code == 0){
+                levelUpState.Detach();
+                levelUpState = null;
+                cameraMan = new CameraMan(Camera, new Vector2(0, 0));
+                All.Add(playState);
             }
 
         }

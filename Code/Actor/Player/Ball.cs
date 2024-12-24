@@ -7,15 +7,14 @@ namespace ProjectGameCP215
     public class Ball : SpriteActor
     {
         public Mover Mover { get; init; }
-
         private MaleActor player; // เพิ่ม reference ไปยัง MaleActor
+
+        private float lifetime; // ตัวนับเวลา (ในวินาที)
 
         public Ball(Vector2 v, MaleActor player)
         {
             this.player = player;
-            // SetTexture(TextureCache.Get("Content/Resource/SpriteSheet/Ball.png"));
-            // Origin = RawSize / 2;
-            // Scale = new Vector2(0.5f, 0.5f);
+            lifetime = 0; // เริ่มต้นที่ 0
 
             var size = new Vector2(16, 16);
             Origin = size / 2;
@@ -33,6 +32,19 @@ namespace ProjectGameCP215
             collisionObj.OnCollide = OnCollide;
             Add(collisionObj);
         }
+
+        public override void Act(float deltaTime)
+        {
+            base.Act(deltaTime);
+
+            // เพิ่มตัวนับเวลา
+            lifetime += deltaTime;
+            if (lifetime >= 1.0f) // หากเวลาเกิน 4 วินาที
+            {
+                Detach(); // ลบ Ball ออกจากเกม
+            }
+        }
+
         public void OnCollide(CollisionObj objB, CollideData collideData)
         {
             var slime = objB.Actor as Slime;
@@ -49,9 +61,9 @@ namespace ProjectGameCP215
             var boss = objB.Actor as Boss;
             if (boss != null)
             {
-                if (boss.hp - 10 >= 0)
+                if (boss.hp - player.damage >= 0)
                 {
-                    boss.hp -= 10;
+                    boss.hp -= player.damage;
                 }
                 else
                 {
@@ -61,7 +73,6 @@ namespace ProjectGameCP215
                     player.CheckLevelUp();
                 }
                 this.Detach();  // ลบ Ball หลังจากชน
-
             }
         }
     }
